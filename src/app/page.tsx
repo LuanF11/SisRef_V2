@@ -2,6 +2,8 @@ import HeaderBar from "@/components/HeaderBar/HeaderBar";
 import MealCard from "@/components/MealCard/MealCard";
 import React from "react";
 
+import style from "./page.module.css"
+
 const cardProps = {
   id: 448763,
   date: "2024-03-07",
@@ -39,7 +41,14 @@ export default function Home() {
     <>
     <p>asdasd</p>
     <HeaderBar>Olaaaa</HeaderBar>
-    <MealCard reservation={cardProps}></MealCard>
+    <div className={style.mealContainer}>
+    <MealCard reservation={cardProps}>
+    </MealCard>
+    <MealCard reservation={cardProps}>
+    </MealCard>
+    <MealCard reservation={cardProps}>
+    </MealCard>
+    </div>
     </>
   );
 }

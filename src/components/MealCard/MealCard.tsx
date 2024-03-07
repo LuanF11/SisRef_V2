@@ -39,6 +39,7 @@ interface Reservation {
 }
 
 interface GenericCardProps {
+  children?: React.ReactNode;
   reservation: Reservation;
 }
 
@@ -74,7 +75,7 @@ const getSituation = (reservation: Reservation) => {
   return <p>Situação desconhecida</p>;
 }
 
-const MealCard = ({ reservation }: GenericCardProps) => {
+const MealCard = ({ children, reservation }: GenericCardProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.top}>
@@ -91,6 +92,7 @@ const MealCard = ({ reservation }: GenericCardProps) => {
           <span key={index}>{food}</span>
         ))
       }</div>
+      { children }
     </div>
   );
 };
