@@ -1,0 +1,15 @@
+.black {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 24px;
+
+    width: 100%;
+    padding: 16px;
+    
+    font-weight: bold;
+    color: white;
+    background: var(--preto);
+    font-size: 16px;
+    border-radius: 4px;
+}
