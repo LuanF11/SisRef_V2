@@ -1,16 +1,17 @@
+
+
 .card {
     display: flex;
+    width: 424px;
+    padding: 24px;
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
-
-    width: 424px;
-    padding: 24px;
-
     border-radius: 4px;
     background: #ffffff;
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
     font-size: 20px;
+
 }
 
 .top {
@@ -20,13 +21,10 @@
     align-self: stretch;
 }
   
-.typeFood{
+.restrictName{
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-.typeFood span{
     color: #000;
     text-align: justify;
     font-family: Roboto;
@@ -36,37 +34,19 @@
     line-height: 16px;
 }
   
-.situation{
+.restrictAction{
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.situation span{
-    color:#009BE5;
+.restrictAction a{
+    text-decoration: none;
+    color:#C80B0F;
     text-align: justify;
     font-family: Roboto;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: 16px; 
-}
-
-.time {
-    color: #999;
-    text-align: justify;
-    font-family: Roboto;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px; 
-}
-
-.listFood {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 15px;
-    align-self: stretch;
+    line-height: 16px;
 }
