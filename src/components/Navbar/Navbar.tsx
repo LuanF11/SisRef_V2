@@ -5,8 +5,8 @@ import styles from './Navbar.module.css'
 const Navbar = () => {
   return (
     <div className={styles.navbar}>
-      <HamburgerMenuItem/>
       <LogoutIcon/>
+      <HamburgerMenuItem/>
     </div>
   );
 };
