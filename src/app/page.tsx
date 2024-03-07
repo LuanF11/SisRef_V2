@@ -1,6 +1,7 @@
 import HeaderBar from "@/components/HeaderBar/HeaderBar";
 import CardReserve from "@/components/CardReserve/CardReserve";
 import CardAttention from "@/components/CardAttention/CardAttention";
+import CardButton from "@/components/CardButton/CardButton";
 import React from "react";
 
 const iconTypeSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -31,6 +32,7 @@ const cardAttentionProps = {
   textContent: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa aspernatur, explicabo iste quibusdam fugit ipsam nihil eveniet quo, quas possimus corrupti quisquam accusantium cupiditate dicta iusto perspiciatis esse totam quidem.",
 };
 
+
 export default function Home() {
   return (
     <>
@@ -38,6 +40,7 @@ export default function Home() {
     <HeaderBar>Olaaaa</HeaderBar>
     <CardReserve {...cardReserveProps}>asdasd</CardReserve>
     <CardAttention {...cardAttentionProps}>asdasd</CardAttention>
+    <CardButton backgroundColorButton="blue" colorTextButton="white" contentButton="Confirmar">asdasd</CardButton>
 
     </>
   );

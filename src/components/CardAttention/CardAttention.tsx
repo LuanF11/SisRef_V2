@@ -1,3 +1,5 @@
+import CardButton from "../CardButton/CardButton";
+
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./CardAttention.module.css";
@@ -12,7 +14,7 @@ const CardAttention = ({iconAlert,textContent}) => {
       <div className={styles.content}>
         {textContent}
       </div>
-      <div className={styles.btn_confirm}>Entendido</div>
+        <CardButton backgroundColorButton="white" colorTextButton="black" contentButton="Entendido"></CardButton>
     </div>
   );
 }
