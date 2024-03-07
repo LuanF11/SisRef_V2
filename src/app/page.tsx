@@ -3,6 +3,7 @@ import MealCard from "@/components/MealCard/MealCard";
 import CardAttention from "@/components/CardAttention/CardAttention";
 import CardButton from "@/components/CardButton/CardButton";
 import CardRestrict from "@/components/CardRestrict/CardRestrict";
+import CardStudent from "@/components/CardStudent/CardStudent";
 import React from "react";
 
 const iconTypeSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -38,8 +39,19 @@ const cardAttentionProps = {
 };
 
 const cardRestrictProps = {
-  iconRestrict: iconTypeSVG,
+  iconRestrict: iconRestrictSVG,
   textRestrict: "Ovo",
+}
+
+const CardStudentProps = {
+  studentName: "João da Silva",
+  studentPhoto: "https://via.placeholder.com/150",
+  studentRegistration: "20211035000096",
+  studentCourse: "Sistema de informação",
+  studentCampus: "Campus Cedro",
+  studentTurn: "Noturno",
+  studentCod: "4367",
+  studentMaturity: "22/10/2024"
 }
 
 
@@ -52,6 +64,7 @@ export default function Home() {
     <CardAttention {...cardAttentionProps}>asdasd</CardAttention>
     <CardButton backgroundColorButton="blue" colorTextButton="white" contentButton="Confirmar">asdasd</CardButton>
     <CardRestrict {...cardRestrictProps}>asdasd</CardRestrict>
+    <CardStudent {...CardStudentProps}>asdasd</CardStudent>
 
     </>
   );

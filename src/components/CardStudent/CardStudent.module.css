@@ -1,0 +1,64 @@
+.card {
+    display: flex;
+    width: 424px;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    border-radius: 4px;
+    background: #ffffff;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    font-size: 20px;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.nameRegist{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+
+}
+
+.studentPhoto img{
+    border-radius: 132px;
+    background: lightgray 50% / cover no-repeat, #D9D9D9;
+}
+
+.title{
+    color:#000;
+    text-align: justify;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+}
+
+.group{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.campTurn{
+    display: flex;
+    width: 416px;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 94px;
+}
+
+.codeMatu{
+    display: flex;
+    width: 416px;
+    justify-content: space-between;
+    align-items: flex-start;
+}
