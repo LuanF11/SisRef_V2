@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './CardReserve.module.css';
+import styles from './MealCard.module.css';
 
-const CardReserve = ({ iconType, textType, iconSituation, textSituation, timeFood, foodList, textSituationColor }) => {
+const MealCard = ({ iconType, textType, iconSituation, textSituation, timeFood, foodList, textSituationColor }) => {
     const textStyle = textSituationColor ? { color: textSituationColor } : null;
   return (
     <div className={styles.card}>
@@ -30,7 +30,7 @@ const CardReserve = ({ iconType, textType, iconSituation, textSituation, timeFoo
   );
 };
 
-CardReserve.propTypes = {
+MealCard.propTypes = {
   iconType: PropTypes.string.isRequired,
   textType: PropTypes.string.isRequired,
   iconSituation: PropTypes.string.isRequired,
@@ -40,4 +40,4 @@ CardReserve.propTypes = {
   textSituationColor: PropTypes.string,
 };
 
-export default CardReserve;
+export default MealCard;
