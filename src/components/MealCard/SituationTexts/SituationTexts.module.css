@@ -1,0 +1,15 @@
+.reservado {
+    color: var(--verde-logo)
+}
+
+.disponivel {
+    color: var(--cinza)
+}
+
+.cancelado {
+    color: var(--vermelho)
+}
+
+.encerrado {
+    color: var(--cinza)
+}

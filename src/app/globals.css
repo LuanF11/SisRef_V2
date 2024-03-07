@@ -1,6 +1,10 @@
 :root{
   --verde-logo: #359830;
   --preto: #000000;
+  --vermelho: #C80B0F;
+  --cinza: #999999;
+
+  font-family: 'Roboto', sans-serif;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
