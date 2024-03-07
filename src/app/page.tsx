@@ -2,6 +2,7 @@ import HeaderBar from "@/components/HeaderBar/HeaderBar";
 import CardReserve from "@/components/CardReserve/CardReserve";
 import CardAttention from "@/components/CardAttention/CardAttention";
 import CardButton from "@/components/CardButton/CardButton";
+import CardRestrict from "@/components/CardRestrict/CardRestrict";
 import React from "react";
 
 const iconTypeSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -16,6 +17,10 @@ const iconSituationSVG =`<svg xmlns="http://www.w3.org/2000/svg" width="12" heig
 const iconAlertSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none">
 <path d="M0 12H13.8947L6.94737 0L0 12ZM7.57895 10.1053H6.31579V8.84211H7.57895V10.1053ZM7.57895 7.57895H6.31579V5.05263H7.57895V7.57895Z" fill="white"/>
 </svg>`;
+
+const iconRestrictSVG =`<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+<path d="M5.73375 4.03226L5.5455 2.15054H8.23487V0H9.31062V2.15054H12L11.2577 9.56452L5.73375 4.03226ZM0.166741 10.7527V11.2903C0.166741 11.586 0.408785 11.828 0.704617 11.828H7.697C7.99283 11.828 8.23487 11.586 8.23487 11.2903V10.7527H0.166741ZM11.4083 11.2366L0.758404 0.591398L0 1.34409L3.06589 4.41398C1.3931 4.76882 0.166741 5.91398 0.166741 7.52688H6.17481L7.25056 8.60215H0.166741V9.67742H8.23487V9.58602L10.6553 12L11.4083 11.2366Z" fill="black"/>
+</svg>`
 
 const cardReserveProps = {
   iconType: iconTypeSVG,
@@ -32,6 +37,11 @@ const cardAttentionProps = {
   textContent: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa aspernatur, explicabo iste quibusdam fugit ipsam nihil eveniet quo, quas possimus corrupti quisquam accusantium cupiditate dicta iusto perspiciatis esse totam quidem.",
 };
 
+const cardRestrictProps = {
+  iconRestrict: iconTypeSVG,
+  textRestrict: "Ovo",
+}
+
 
 export default function Home() {
   return (
@@ -41,6 +51,7 @@ export default function Home() {
     <CardReserve {...cardReserveProps}>asdasd</CardReserve>
     <CardAttention {...cardAttentionProps}>asdasd</CardAttention>
     <CardButton backgroundColorButton="blue" colorTextButton="white" contentButton="Confirmar">asdasd</CardButton>
+    <CardRestrict {...cardRestrictProps}>asdasd</CardRestrict>
 
     </>
   );
