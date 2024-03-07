@@ -1,0 +1,15 @@
+@media only screen and (min-width: 576px) {
+    .navbar {
+        padding: 8rem 1.2rem;
+    }
+}
+
+.navbar {
+    background: var(--verde-logo);
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--verde-logo);
+    padding: 2.4rem 1.6rem;
+}
