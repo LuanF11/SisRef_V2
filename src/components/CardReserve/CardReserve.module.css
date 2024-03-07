@@ -24,11 +24,31 @@
     align-items: center;
     gap: 8px;
 }
+
+.typeFood span{
+    color: #000;
+    text-align: justify;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+}
   
 .situation{
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.situation span{
+    color:#009BE5;
+    text-align: justify;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; 
 }
 
 .time {
