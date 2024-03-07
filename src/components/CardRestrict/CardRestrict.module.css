@@ -25,10 +25,28 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    color: #000;
+    text-align: justify;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
 }
   
 .restrictAction{
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.restrictAction a{
+    text-decoration: none;
+    color:#C80B0F;
+    text-align: justify;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
 }
