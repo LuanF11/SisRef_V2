@@ -1,3 +1,4 @@
+import React from 'react';
 import style from './HeaderBar.module.css';
 
 const HeaderBar = ({ children, variant }: { children: React.ReactNode, variant?: "preto" }) => {

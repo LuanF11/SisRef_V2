@@ -1,3 +1,4 @@
+import React from 'react';
 import style from './WidthLimiter.module.css';
 
 const WidthLimiter = ({ children }: { children: React.ReactNode }) => {
