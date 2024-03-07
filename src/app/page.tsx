@@ -1,5 +1,6 @@
 import HeaderBar from "@/components/HeaderBar/HeaderBar";
 import CardReserve from "@/components/CardReserve/CardReserve";
+import CardAttention from "@/components/CardAttention/CardAttention";
 import React from "react";
 
 const iconTypeSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -11,7 +12,11 @@ const iconSituationSVG =`<svg xmlns="http://www.w3.org/2000/svg" width="12" heig
 <path d="M6 0C2.688 0 0 2.688 0 6C0 9.312 2.688 12 6 12C9.312 12 12 9.312 12 6C12 2.688 9.312 0 6 0ZM4.8 9L1.8 6L2.646 5.154L4.8 7.302L9.354 2.748L10.2 3.6L4.8 9Z" fill="#FAB03C"/>
 </svg>`;
 
-const cardProps = {
+const iconAlertSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none">
+<path d="M0 12H13.8947L6.94737 0L0 12ZM7.57895 10.1053H6.31579V8.84211H7.57895V10.1053ZM7.57895 7.57895H6.31579V5.05263H7.57895V7.57895Z" fill="white"/>
+</svg>`;
+
+const cardReserveProps = {
   iconType: iconTypeSVG,
   textType: "Almoço",
   iconSituation: iconSituationSVG,
@@ -21,12 +26,18 @@ const cardProps = {
   textSituationColor: "green",
 };
 
+const cardAttentionProps = {
+  iconAlert: iconAlertSVG ,
+  textContent: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa aspernatur, explicabo iste quibusdam fugit ipsam nihil eveniet quo, quas possimus corrupti quisquam accusantium cupiditate dicta iusto perspiciatis esse totam quidem.",
+};
+
 export default function Home() {
   return (
     <>
     <p>asdasd</p>
     <HeaderBar>Olaaaa</HeaderBar>
-    <CardReserve {...cardProps}>asdasd</CardReserve>
+    <CardReserve {...cardReserveProps}>asdasd</CardReserve>
+    <CardAttention {...cardAttentionProps}>asdasd</CardAttention>
 
     </>
   );
