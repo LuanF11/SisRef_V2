@@ -55,19 +55,23 @@ const getSituation = (reservation: Reservation) => {
     return <CanceladoText />;
   }
 
-  switch (true) {
-    case reservationDate < today:
-      return <EncerradoText />;
-    case reservationDate > today:
-      return <DisponivelText />;
-    case reservationDate.getTime() === today.getTime():
-      if (reservation.meal.timeStart >= new Date().toLocaleTimeString()) {
-        return <DisponivelText />;
-      }
-      return <EncerradoText />;
-    default:
-      return <p>Situação desconhecida</p>;
+  if (reservationDate < today) {
+    return <EncerradoText />;
   }
+
+  if (reservationDate > today) {
+    return <DisponivelText />;
+  }
+
+  if (reservationDate.getTime() === today.getTime() && reservation.meal.timeStart >= new Date().toLocaleTimeString()) {
+    return <DisponivelText />;
+  }
+
+  if (reservationDate.getTime() === today.getTime() && reservation.meal.timeStart < new Date().toLocaleTimeString()) {
+    return <EncerradoText />;
+  }
+
+  return <p>Situação desconhecida</p>;
 }
 
 const MealCard = ({ reservation }: GenericCardProps) => {
