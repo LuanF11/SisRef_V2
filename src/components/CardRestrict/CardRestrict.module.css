@@ -6,8 +6,8 @@
     align-items: flex-start;
     gap: 1.5rem;
     border-radius: 0.25rem;
-    background: #ffffff;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    background: var(--branco);
+    box-shadow: var(--sombra);
     font-size: 1.25rem;
 
 }
@@ -23,7 +23,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #000;
+    color: var(--preto);
     text-align: justify;
     font-family: Roboto;
     font-size: 1.25rem;
@@ -40,7 +40,7 @@
 
 .restrictAction a{
     text-decoration: none;
-    color:#C80B0F;
+    color: var(--vermelho);
     text-align: justify;
     font-family: Roboto;
     font-size: 1.25rem;

@@ -1,6 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 :root{
   --verde-logo: #359830;
   --preto: #000000;
+  --vermelho: #C80B0F;
+  --cinza: #999999;
+  --branco: #FFFFFF;
+  --background: #EAEFF1;
+  --azul-claro: #009BE5;
+  --laranja: #FAB03C;
+
+  /* --sombra-pequena: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+  --sombra-grande: 0px 4px 4px 2px rgba(0, 0, 0, 0.25); */
+
+  --sombra: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+
+  font-family: 'Roboto', sans-serif;
+}
+
+@media only screen and (min-width: 768px){
+	:root {
+		--sombra: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+	}
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -35,7 +56,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-  font-size: 62.5%;
+	background-color: var(--background);
 }
 ol, ul {
 	list-style: none;
