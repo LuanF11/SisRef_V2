@@ -1,4 +1,4 @@
-import CardButton from "../CardButton/CardButton";
+import Button from "../Button/Button";
 
 import React from "react";
 import PropTypes from "prop-types";
@@ -14,7 +14,7 @@ const CardAttention = ({iconAlert,textContent}) => {
       <div className={styles.content}>
         {textContent}
       </div>
-        <CardButton backgroundColorButton="white" colorTextButton="black" contentButton="Entendido"></CardButton>
+        <Button backgroundColorButton="white" colorTextButton="black" contentButton="Entendido"></Button>
     </div>
   );
 }
