@@ -4,18 +4,18 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
-    border-radius: 0.25rem;
+    border-radius: .25rem;
     background: var(--vermelho);
-    font-size: 1.25rem;
+    font-size: 0.87rem;
 }
 
 .top {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: .25rem;
     color: var(--branco);
     text-align: justify;
-    font-size: 1.25rem;
+    font-size: 0.87rem;
     font-style: normal;
     font-weight: 700;
     line-height: 1rem;
@@ -24,7 +24,7 @@
 .content{
     color: var(--branco);
     text-align: justify;
-    font-size: 1.25rem;
+    font-size: 0.87rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -35,14 +35,16 @@
     padding: 1rem;
     justify-content: center;
     align-items: center;
-    border-radius: 0.25rem;
+    align-self: stretch;
+    border-radius: .25rem;
     background: var(--branco);
-    color: var(--preto);
+    color:var(--preto);
     text-align: justify;
-    font-size: 1.25rem;
+    font-size: 0.87rem;
     font-style: normal;
     font-weight: 700;
     line-height: 1rem;
     border: none;
     cursor: pointer;
 }
+  
