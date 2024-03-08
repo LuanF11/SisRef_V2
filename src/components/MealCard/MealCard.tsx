@@ -2,96 +2,107 @@ import React from 'react';
 import styles from './MealCard.module.css';
 import DisponivelText from './SituationTexts/DisponivelText';
 import EncerradoText from './SituationTexts/EncerradoText';
-import CanceladoText from './SituationTexts/CanceladoText';
 import ReservadoText from './SituationTexts/ReservadoText';
 import MealNameText from './MealNameText/MealNameText';
-import { Reservation } from '@/lib/types/ReservationType';
+import { MenuItemWithMeal } from '@/lib/types/MenuItemWithMeal';
+import CanceladoText from './SituationTexts/CanceladoText';
+import BloqueadoText from './SituationTexts/BloqueadoText';
 
 interface GenericCardProps {
-  reservation: Reservation;
+  mealByDay: MenuItemWithMeal;
   showDateAndTime?: boolean;
 }
 
-const getSituationText = (reservation: Reservation) => {
-  const reservationDate = new Date(reservation.date);
+const getSituationText = (menu: MenuItemWithMeal) => {
+  const menuDate = new Date(menu.date);
   // É necessário adicionar 1 dia para corrigir o fuso horário
-  reservationDate.setDate(reservationDate.getDate() + 1);
-  reservationDate.setHours(0, 0, 0, 0);
+  menuDate.setDate(menuDate.getDate() + 1);
+  menuDate.setHours(0, 0, 0, 0);
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  if (reservation.canceled_by_student) {
+  if (!menu.permission) {
+    return "BloqueadoText";
+  }
+
+  if (menu.canceled_by_student) {
     return "CanceladoText";
   }
 
-  if (reservationDate < today) {
+  if (menu.agendado) {
+    return "ReservadoText";
+  }
+
+  if (menuDate < today) {
     return "EncerradoText";
   }
 
-  if (reservationDate > today) {
+  if (menuDate > today) {
     return "DisponivelText";
   }
 
-  if (reservationDate.getTime() === today.getTime() && reservation.meal.timeStart >= new Date().toLocaleTimeString()) {
+  if (menuDate.getTime() === today.getTime() && menu.meal.timeStart >= new Date().toLocaleTimeString()) {
     return "DisponivelText";
   }
 
-  if (reservationDate.getTime() === today.getTime() && reservation.meal.timeStart < new Date().toLocaleTimeString()) {
+  if (menuDate.getTime() === today.getTime() && menu.meal.timeStart < new Date().toLocaleTimeString()) {
     return "EncerradoText";
   }
 
   return "ReservadoText";
 }
 
-const getSituationElement = (reservation: Reservation) => {
-  const situationText = getSituationText(reservation);
+const getSituationElement = (menu: MenuItemWithMeal) => {
+  const situationText = getSituationText(menu);
 
   switch (situationText) {
     case "DisponivelText":
       return <DisponivelText />;
     case "EncerradoText":
       return <EncerradoText />;
-    case "CanceladoText":
-      return <CanceladoText />;
     case "ReservadoText":
       return <ReservadoText />;
+    case "CanceladoText":
+      return <CanceladoText />;
+    case "BloqueadoText":
+      return <BloqueadoText />;
   }
 }
 
-const getTime = (reservation: Reservation, showDateAndTime: boolean | undefined) => {
+const getTime = (menu: MenuItemWithMeal, showDateAndTime: boolean | undefined) => {
   if (showDateAndTime) {
-    const date = new Date(reservation.date);
+    const date = new Date(menu.date);
     const formattedDate = `${date.getDate()} ${date.toLocaleString('default', { month: 'short' })} ${date.getFullYear()}`;
 
-    return `${formattedDate} - ${reservation.meal.timeStart} - ${reservation.meal.timeEnd}`;
+    return `${formattedDate} - ${menu.meal.timeStart} - ${menu.meal.timeEnd}`;
   }
 
-  return `${reservation.meal.timeStart} - ${reservation.meal.timeEnd}`;
+  return `${menu.meal.timeStart} - ${menu.meal.timeEnd}`;
 }
 
-const MealCard = ({ reservation, showDateAndTime }: GenericCardProps) => {
+const MealCard = ({ mealByDay: menu, showDateAndTime }: GenericCardProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.top}>
         <div className={styles.mealName}>
-          <MealNameText mealId={reservation.meal_id} />
+          <MealNameText mealId={menu.meal_id} />
         </div>
-        <div className={styles.situation}>{getSituationElement(reservation)}</div>
+        <div className={styles.situation}>{getSituationElement(menu)}</div>
       </div>
-      <div className={styles.time}>{getTime(reservation, showDateAndTime)}</div>
+      <div className={styles.time}>{getTime(menu, showDateAndTime)}</div>
       <div className={styles.mealDescription}>{
-        reservation.menu.description.split(/[;+]/).map((food, index) => (
+        menu.description.split(/[;+]/).map((food, index) => (
           <span key={index}>{food}</span>
         ))
       }</div>
       {
-        getSituationText(reservation) === "DisponivelText" && (
+        getSituationText(menu) === "DisponivelText" && (
           <button className={styles.button}>Reservar</button>
         )
       }
       {
-        getSituationText(reservation) === "ReservadoText" && (
+        getSituationText(menu) === "ReservadoText" && (
           <button className={styles.button}>Cancelar</button>
         )
       }

@@ -9,7 +9,7 @@ interface Reservation {
     user_id: number;
     campus_id: number;
     absenceJustification: null | string;
-    canceled_by_student: number;
+    canceled_by_student: boolean;
     ticketCode: null | string;
     menu_id: number;
     menu: {

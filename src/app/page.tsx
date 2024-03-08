@@ -3,31 +3,20 @@ import MealCard from "@/components/MealCard/MealCard";
 import React from "react";
 
 import style from "./page.module.css"
+import { MenuItemWithMeal } from "@/lib/types/MenuItemWithMeal";
 
-const cardProps = {
-  id: 448763,
-  date: "2024-03-09",
-  dateInsert: "2024-03-06",
-  time: "20:09:31",
-  wasPresent: 1,
-  meal_id: 0,
-  student_id: 2153,
-  user_id: 9,
+const cardProps: MenuItemWithMeal = {
+  id: 2378,
+  date: "2024-03-08",
+  description: "Cuscuz c/ ovos + Suco de laranja",
   campus_id: 1,
-  absenceJustification: null,
-  canceled_by_student: 0,
-  ticketCode: null,
-  menu_id: 2349,
-  menu: {
-    id: 2349,
-    date: "2024-03-06",
-    description: "Cuscuz c/ carne moída ou Ovos  + Suco de Caju",
-    campus_id: 1,
-    meal_id: 4
-  },
+  meal_id: 4,
+  permission: 1,
+  agendado: false,
+  canceled_by_student: false,
   meal: {
     id: 4,
-    description: "Lanche da manhã",
+    description: "Lanche da noite",
     timeEnd: "20:40:00",
     timeStart: "19:50:00",
     campus_id: 1,
@@ -46,9 +35,11 @@ cardProps2.canceled_by_student = 1
 
 cardProps3.meal_id = 2
 cardProps3.meal.description = "Lanche da tarde"
+cardProps3.permission = 0
 
 cardProps4.meal_id = 3
 cardProps4.meal.description = "Lanche da noite"
+cardProps4.agendado = true
 
 export default function Home() {
   return (
@@ -56,13 +47,13 @@ export default function Home() {
     <p>asdasd</p>
     <HeaderBar>Olaaaa</HeaderBar>
     <div className={style.mealContainer}>
-    <MealCard reservation={cardProps}>
+    <MealCard mealByDay={cardProps}>
     </MealCard>
-    <MealCard reservation={cardProps2} showDateAndTime>
+    <MealCard mealByDay={cardProps2} showDateAndTime>
     </MealCard>
-    <MealCard reservation={cardProps3} showDateAndTime>
+    <MealCard mealByDay={cardProps3} showDateAndTime>
     </MealCard>
-    <MealCard reservation={cardProps4}>
+    <MealCard mealByDay={cardProps4}>
     </MealCard>
     </div>
     </>

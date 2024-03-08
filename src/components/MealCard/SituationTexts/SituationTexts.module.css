@@ -21,3 +21,7 @@
 .justificado {
     color: var(--azul-claro)
 }
+
+.bloqueado {
+    color: var(--laranja)
+}
