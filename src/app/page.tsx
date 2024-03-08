@@ -36,29 +36,18 @@ const cardProps = {
   }
 };
 
-const cardProps2 = {
-  ...cardProps,
-  meal_id: 1,
-  meal: {
-    description: "Almoço"
-  }
-}
+const cardProps2 = JSON.parse(JSON.stringify(cardProps))
+const cardProps3 = JSON.parse(JSON.stringify(cardProps))
+const cardProps4 = JSON.parse(JSON.stringify(cardProps))
 
-const cardProps3 = {
-  ...cardProps,
-  meal_id: 2,
-  meal: {
-    description: "Lanche da tarde"
-  }
-}
+cardProps2.meal_id = 1
+cardProps2.meal.description = "Almoço"
 
-const cardProps4 = {
-  ...cardProps,
-  meal_id: 3,
-  meal: {
-    description: "Lanche da noite"
-  }
-}
+cardProps3.meal_id = 2
+cardProps3.meal.description = "Lanche da tarde"
+
+cardProps4.meal_id = 3
+cardProps4.meal.description = "Lanche da noite"
 
 export default function Home() {
   return (
@@ -68,9 +57,9 @@ export default function Home() {
     <div className={style.mealContainer}>
     <MealCard reservation={cardProps}>
     </MealCard>
-    <MealCard reservation={cardProps2}>
+    <MealCard reservation={cardProps2} showDateAndTime>
     </MealCard>
-    <MealCard reservation={cardProps3}>
+    <MealCard reservation={cardProps3} showDateAndTime>
     </MealCard>
     <MealCard reservation={cardProps4}>
     </MealCard>

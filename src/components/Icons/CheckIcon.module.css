@@ -5,3 +5,11 @@
 .gray{
     fill: var(--cinza);
 }
+
+.orange { 
+    fill: var(--laranja);
+}
+
+.lightBlue {
+    fill: var(--azul-claro);
+}

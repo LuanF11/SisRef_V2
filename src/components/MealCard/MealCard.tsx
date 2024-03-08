@@ -41,6 +41,7 @@ interface Reservation {
 interface GenericCardProps {
   children?: React.ReactNode;
   reservation: Reservation;
+  showDateAndTime?: boolean;
 }
 
 const getSituation = (reservation: Reservation) => {
@@ -75,7 +76,18 @@ const getSituation = (reservation: Reservation) => {
   return <p>Situação desconhecida</p>;
 }
 
-const MealCard = ({ children, reservation }: GenericCardProps) => {
+const getTime = (reservation: Reservation, showDateAndTime: boolean | undefined) => {
+  if (showDateAndTime) {
+    const date = new Date(reservation.date);
+    const formattedDate = `${date.getDate()} ${date.toLocaleString('default', { month: 'short' })} ${date.getFullYear()}`;
+
+    return `${formattedDate} - ${reservation.meal.timeStart} - ${reservation.meal.timeEnd}`;
+  }
+
+  return `${reservation.meal.timeStart} - ${reservation.meal.timeEnd}`;
+}
+
+const MealCard = ({ children, reservation, showDateAndTime }: GenericCardProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.top}>
@@ -84,15 +96,13 @@ const MealCard = ({ children, reservation }: GenericCardProps) => {
         </div>
         <div className={styles.situation}>{getSituation(reservation)}</div>
       </div>
-      <div className={styles.time}>{
-        `${reservation.meal.timeStart} - ${reservation.meal.timeEnd}`
-      }</div>
+      <div className={styles.time}>{getTime(reservation, showDateAndTime)}</div>
       <div className={styles.mealDescription}>{
         reservation.menu.description.split(/[;+]/).map((food, index) => (
           <span key={index}>{food}</span>
         ))
       }</div>
-      { children }
+      {children}
     </div>
   );
 };

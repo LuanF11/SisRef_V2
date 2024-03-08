@@ -1,7 +1,18 @@
 import style from './CheckIcon.module.css';
 
-const CheckIcon = ({ variant }: { variant: "verde" | "cinza" }) => {
-    const color = variant === "verde" ? style.green : style.gray
+const CheckIcon = ({ variant }: { variant: "verde" | "cinza" | "laranja" | "azul-claro" }) => {
+    let color = style.gray;
+    switch (variant) {
+        case "verde":
+            color = style.green;
+            break;
+        case "laranja":
+            color = style.orange;
+            break;
+        case "azul-claro":
+            color = style.lightBlue;
+            break;
+    }
 
     return (
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
