@@ -28,6 +28,7 @@ const cardProps: MenuItemWithMeal = {
 const cardProps2 = JSON.parse(JSON.stringify(cardProps))
 const cardProps3 = JSON.parse(JSON.stringify(cardProps))
 const cardProps4 = JSON.parse(JSON.stringify(cardProps))
+const cardProps5 = JSON.parse(JSON.stringify(cardProps))
 
 cardProps2.meal_id = 1
 cardProps2.meal.description = "Almoço"
@@ -41,21 +42,22 @@ cardProps4.meal_id = 3
 cardProps4.meal.description = "Lanche da noite"
 cardProps4.agendado = true
 
+cardProps5.meal_id = 1
+cardProps5.meal.description = "Almoço"
+cardProps5.date = "2024-03-02"
+
 export default function Home() {
   return (
     <>
-    <p>asdasd</p>
-    <HeaderBar>Olaaaa</HeaderBar>
-    <div className={style.mealContainer}>
-    <MealCard mealByDay={cardProps}>
-    </MealCard>
-    <MealCard mealByDay={cardProps2} showDateAndTime>
-    </MealCard>
-    <MealCard mealByDay={cardProps3} showDateAndTime>
-    </MealCard>
-    <MealCard mealByDay={cardProps4}>
-    </MealCard>
-    </div>
+      <p>asdasd</p>
+      <HeaderBar>Olaaaa</HeaderBar>
+      <div className={style.mealContainer}>
+        <MealCard mealByDay={cardProps} />
+        <MealCard mealByDay={cardProps2} showDateAndTime />
+        <MealCard mealByDay={cardProps3} showDateAndTime />
+        <MealCard mealByDay={cardProps4} />
+        <MealCard mealByDay={cardProps5} />
+      </div>
     </>
   );
 }
