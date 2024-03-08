@@ -8,10 +8,18 @@
   --branco: #FFFFFF;
   --background: #EAEFF1;
 
-  --sombra-pequena: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
-  --sombra-grande: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+  /* --sombra-pequena: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+  --sombra-grande: 0px 4px 4px 2px rgba(0, 0, 0, 0.25); */
+
+  --sombra: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 
   font-family: 'Roboto', sans-serif;
+}
+
+@media only screen and (min-width: 768px){
+	:root {
+		--sombra: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+	}
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 

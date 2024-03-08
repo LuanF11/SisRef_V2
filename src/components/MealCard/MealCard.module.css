@@ -8,7 +8,7 @@
 
     border-radius: .25rem;
     background: var(--branco);
-    box-shadow: var(--sombra-pequena);
+    box-shadow: var(--sombra);
 }
 
 .top {
