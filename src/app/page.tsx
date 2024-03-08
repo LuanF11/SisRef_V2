@@ -10,7 +10,7 @@ const cardProps = {
   dateInsert: "2024-03-06",
   time: "20:09:31",
   wasPresent: 1,
-  meal_id: 4,
+  meal_id: 0,
   student_id: 2153,
   user_id: 9,
   campus_id: 1,
@@ -27,7 +27,7 @@ const cardProps = {
   },
   meal: {
     id: 4,
-    description: "Lanche da noite",
+    description: "Lanche da manhã",
     timeEnd: "20:40:00",
     timeStart: "19:50:00",
     campus_id: 1,
@@ -35,6 +35,30 @@ const cardProps = {
     qtdTimeReservationStart: 19
   }
 };
+
+const cardProps2 = {
+  ...cardProps,
+  meal_id: 1,
+  meal: {
+    description: "Almoço"
+  }
+}
+
+const cardProps3 = {
+  ...cardProps,
+  meal_id: 2,
+  meal: {
+    description: "Lanche da tarde"
+  }
+}
+
+const cardProps4 = {
+  ...cardProps,
+  meal_id: 3,
+  meal: {
+    description: "Lanche da noite"
+  }
+}
 
 export default function Home() {
   return (
@@ -44,9 +68,11 @@ export default function Home() {
     <div className={style.mealContainer}>
     <MealCard reservation={cardProps}>
     </MealCard>
-    <MealCard reservation={cardProps}>
+    <MealCard reservation={cardProps2}>
     </MealCard>
-    <MealCard reservation={cardProps}>
+    <MealCard reservation={cardProps3}>
+    </MealCard>
+    <MealCard reservation={cardProps4}>
     </MealCard>
     </div>
     </>

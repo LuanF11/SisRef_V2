@@ -21,21 +21,19 @@
     column-gap: 1rem;
 }
   
-.typeFood{
+.mealName{
     display: flex;
     align-items: center;
     gap: .5rem;
+
+    font-weight: bold;
 }
 
-.typeFood span{
-    color: var(--preto);
-    text-align: justify;
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    line-height: 1rem;
+.mealName svg {
+    height: 1rem;
+    aspect-ratio: 1;
 }
-  
+
 .situation{
     display: flex;
     align-items: center;
@@ -51,11 +49,10 @@
     line-height: 1rem; 
 }
 
-.listFood {
+.mealDescription {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 1rem;
-    align-self: stretch;
+    row-gap: 1rem;
 }

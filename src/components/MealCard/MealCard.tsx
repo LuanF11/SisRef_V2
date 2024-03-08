@@ -79,15 +79,15 @@ const MealCard = ({ children, reservation }: GenericCardProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.top}>
-        <div className={styles.typeFood}>
-          <MealNameText mealId={3} />
+        <div className={styles.mealName}>
+          <MealNameText mealId={reservation.meal_id} />
         </div>
         <div className={styles.situation}>{getSituation(reservation)}</div>
       </div>
       <div className={styles.time}>{
         `${reservation.meal.timeStart} - ${reservation.meal.timeEnd}`
       }</div>
-      <div className={styles.listFood}>{
+      <div className={styles.mealDescription}>{
         reservation.menu.description.split(/[;+]/).map((food, index) => (
           <span key={index}>{food}</span>
         ))

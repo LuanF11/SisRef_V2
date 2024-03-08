@@ -4,7 +4,7 @@ import SunriseIcon from "@/components/Icons/SunriseIcon";
 import SunsetIcon from "@/components/Icons/SunsetIcon";
 
 interface MealNameTextProps {
-    mealId: 0 | 1 | 2 | 3;
+    mealId: number;
 }
 
 const LancheDaManha = () => {
