@@ -5,46 +5,14 @@ import EncerradoText from './SituationTexts/EncerradoText';
 import CanceladoText from './SituationTexts/CanceladoText';
 import ReservadoText from './SituationTexts/ReservadoText';
 import MealNameText from './MealNameText/MealNameText';
-
-interface Reservation {
-  id: number;
-  date: string;
-  dateInsert: string;
-  time: string;
-  wasPresent: number;
-  meal_id: number;
-  student_id: number;
-  user_id: number;
-  campus_id: number;
-  absenceJustification: null | string;
-  canceled_by_student: number;
-  ticketCode: null | string;
-  menu_id: number;
-  menu: {
-    id: number;
-    date: string;
-    description: string;
-    campus_id: number;
-    meal_id: number;
-  };
-  meal: {
-    id: number;
-    description: string;
-    timeEnd: string;
-    timeStart: string;
-    campus_id: number;
-    qtdTimeReservationEnd: number;
-    qtdTimeReservationStart: number;
-  };
-}
+import { Reservation } from '@/lib/types/ReservationType';
 
 interface GenericCardProps {
-  children?: React.ReactNode;
   reservation: Reservation;
   showDateAndTime?: boolean;
 }
 
-const getSituation = (reservation: Reservation) => {
+const getSituationText = (reservation: Reservation) => {
   const reservationDate = new Date(reservation.date);
   // É necessário adicionar 1 dia para corrigir o fuso horário
   reservationDate.setDate(reservationDate.getDate() + 1);
@@ -54,26 +22,41 @@ const getSituation = (reservation: Reservation) => {
   today.setHours(0, 0, 0, 0);
 
   if (reservation.canceled_by_student) {
-    return <CanceladoText />;
+    return "CanceladoText";
   }
 
   if (reservationDate < today) {
-    return <EncerradoText />;
+    return "EncerradoText";
   }
 
   if (reservationDate > today) {
-    return <DisponivelText />;
+    return "DisponivelText";
   }
 
   if (reservationDate.getTime() === today.getTime() && reservation.meal.timeStart >= new Date().toLocaleTimeString()) {
-    return <DisponivelText />;
+    return "DisponivelText";
   }
 
   if (reservationDate.getTime() === today.getTime() && reservation.meal.timeStart < new Date().toLocaleTimeString()) {
-    return <EncerradoText />;
+    return "EncerradoText";
   }
 
-  return <p>Situação desconhecida</p>;
+  return "ReservadoText";
+}
+
+const getSituationElement = (reservation: Reservation) => {
+  const situationText = getSituationText(reservation);
+
+  switch (situationText) {
+    case "DisponivelText":
+      return <DisponivelText />;
+    case "EncerradoText":
+      return <EncerradoText />;
+    case "CanceladoText":
+      return <CanceladoText />;
+    case "ReservadoText":
+      return <ReservadoText />;
+  }
 }
 
 const getTime = (reservation: Reservation, showDateAndTime: boolean | undefined) => {
@@ -87,14 +70,14 @@ const getTime = (reservation: Reservation, showDateAndTime: boolean | undefined)
   return `${reservation.meal.timeStart} - ${reservation.meal.timeEnd}`;
 }
 
-const MealCard = ({ children, reservation, showDateAndTime }: GenericCardProps) => {
+const MealCard = ({ reservation, showDateAndTime }: GenericCardProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.top}>
         <div className={styles.mealName}>
           <MealNameText mealId={reservation.meal_id} />
         </div>
-        <div className={styles.situation}>{getSituation(reservation)}</div>
+        <div className={styles.situation}>{getSituationElement(reservation)}</div>
       </div>
       <div className={styles.time}>{getTime(reservation, showDateAndTime)}</div>
       <div className={styles.mealDescription}>{
@@ -102,7 +85,16 @@ const MealCard = ({ children, reservation, showDateAndTime }: GenericCardProps) 
           <span key={index}>{food}</span>
         ))
       }</div>
-      {children}
+      {
+        getSituationText(reservation) === "DisponivelText" && (
+          <button className={styles.button}>Reservar</button>
+        )
+      }
+      {
+        getSituationText(reservation) === "ReservadoText" && (
+          <button className={styles.button}>Cancelar</button>
+        )
+      }
     </div>
   );
 };

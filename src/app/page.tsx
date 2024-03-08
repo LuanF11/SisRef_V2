@@ -6,7 +6,7 @@ import style from "./page.module.css"
 
 const cardProps = {
   id: 448763,
-  date: "2024-03-07",
+  date: "2024-03-09",
   dateInsert: "2024-03-06",
   time: "20:09:31",
   wasPresent: 1,
@@ -42,6 +42,7 @@ const cardProps4 = JSON.parse(JSON.stringify(cardProps))
 
 cardProps2.meal_id = 1
 cardProps2.meal.description = "Almoço"
+cardProps2.canceled_by_student = 1
 
 cardProps3.meal_id = 2
 cardProps3.meal.description = "Lanche da tarde"
