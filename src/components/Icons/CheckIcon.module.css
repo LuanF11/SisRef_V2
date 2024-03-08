@@ -1,0 +1,15 @@
+.green{
+    fill: var(--verde-logo);
+}
+
+.gray{
+    fill: var(--cinza);
+}
+
+.orange { 
+    fill: var(--laranja);
+}
+
+.lightBlue {
+    fill: var(--azul-claro);
+}

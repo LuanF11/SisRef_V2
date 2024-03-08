@@ -1,0 +1,27 @@
+.reservado, .utilizado {
+    color: var(--verde-logo)
+}
+
+.disponivel {
+    color: var(--cinza)
+}
+
+.cancelado {
+    color: var(--vermelho)
+}
+
+.encerrado {
+    color: var(--cinza)
+}
+
+.naoUtilizado {
+    color: var(--laranja)
+}
+
+.justificado {
+    color: var(--azul-claro)
+}
+
+.bloqueado {
+    color: var(--laranja)
+}

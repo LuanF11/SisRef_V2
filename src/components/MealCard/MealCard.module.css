@@ -1,15 +1,14 @@
 .card {
     display: flex;
-    width: 424px;
-    padding: 24px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
-    border-radius: 4px;
-    background: #ffffff;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
-    font-size: 20px;
+    row-gap: 1.5rem;
 
+    padding: 1.5rem;
+
+    border-radius: .25rem;
+    background: var(--branco);
+    box-shadow: var(--sombra);
 }
 
 .top {
@@ -17,55 +16,43 @@
     justify-content: space-between;
     align-items: flex-start;
     align-self: stretch;
+    flex-wrap: wrap;
+    row-gap: .5rem;
+    column-gap: 1rem;
 }
   
-.typeFood{
+.mealName{
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: .5rem;
+
+    font-weight: bold;
 }
 
-.typeFood span{
-    color: #000;
-    text-align: justify;
-    font-family: Roboto;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 16px;
+.mealName svg {
+    height: 1rem;
+    aspect-ratio: 1;
 }
-  
+
 .situation{
     display: flex;
     align-items: center;
-    gap: 8px;
-}
-
-.situation span{
-    color:#009BE5;
-    text-align: justify;
-    font-family: Roboto;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px; 
+    gap: .5rem;
 }
 
 .time {
-    color: #999;
+    color: var(--cinza);
     text-align: justify;
-    font-family: Roboto;
-    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
-    line-height: 16px; 
+    line-height: 1rem; 
 }
 
-.listFood {
+.mealDescription {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 15px;
-    align-self: stretch;
+    row-gap: 1rem;
 }
