@@ -4,6 +4,7 @@ import React from "react";
 
 import style from "./page.module.css"
 import { MenuItemWithMeal } from "@/lib/types/MenuItemWithMeal";
+import CardAttention from "@/components/CardAttention/CardAttention";
 
 const cardProps: MenuItemWithMeal = {
   id: 2378,
@@ -58,6 +59,8 @@ export default function Home() {
         <MealCard mealByDay={cardProps4} />
         <MealCard mealByDay={cardProps5} />
       </div>
+      <CardAttention iconAlert="icone" textContent="Você não pode reservar refeições para dias passados." />
+
     </>
   );
 }
