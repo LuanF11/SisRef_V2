@@ -58,13 +58,13 @@ const CardStudentProps = {
 export default function Home() {
   return (
     <>
-    <p>asdasd</p>
+    {/* <p>asdasd</p>
     <HeaderBar>Olaaaa</HeaderBar>
     <MealCard {...mealCardProps}>asdasd</MealCard>
     <CardAttention {...cardAttentionProps}>asdasd</CardAttention>
     <CardButton backgroundColorButton="blue" colorTextButton="white" contentButton="Confirmar">asdasd</CardButton>
+    <CardStudent {...CardStudentProps}>asdasd</CardStudent> */}
     <CardRestrict {...cardRestrictProps}>asdasd</CardRestrict>
-    <CardStudent {...CardStudentProps}>asdasd</CardStudent>
 
     </>
   );
