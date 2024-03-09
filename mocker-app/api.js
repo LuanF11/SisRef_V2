@@ -85,6 +85,12 @@ const todasAsRefeicoes = [
     lancheDaNoite
 ];
 
+const  foodRestrictions = [
+    "leite",
+    "Ovo",
+    "Macarrão"
+]
+
 const proxy = {
     '/api/meal-by-day': (req, res) => {
         return res.json(todasAsRefeicoes);
@@ -114,6 +120,31 @@ const proxy = {
         meal.canceled_by_student = true;
 
         res.json(todasAsRefeicoes);
+    },
+    '/api/food-restrictions': (req, res) => {
+        return res.json(foodRestrictions);
+    },
+    '/api/add-food-restriction': (req, res) => {
+        const { restriction } = req.query;
+
+        if (!restriction) return res.status(400).json({ error: 'Restriction is required' });
+
+        foodRestrictions.push(restriction);
+
+        res.json(foodRestrictions);
+    },
+    '/api/remove-food-restriction': (req, res) => {
+        const { restriction } = req.query;
+
+        if (!restriction) return res.status(400).json({ error: 'Restriction is required' });
+
+        const index = foodRestrictions.indexOf(restriction);
+
+        if (index === -1) return res.status(404).json({ error: 'Food restriction not found' });
+
+        foodRestrictions.splice(index, 1);
+
+        res.json(foodRestrictions);
     }
 }
 
