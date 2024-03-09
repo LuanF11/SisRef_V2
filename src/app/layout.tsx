@@ -6,9 +6,12 @@ import WidthLimiter from "@/components/WidthLimiter/WidthLimiter";
 import { MenuItemWithMeal } from "@/lib/types/MenuItemWithMeal";
 import React, { useEffect } from "react";
 
-export const MenuContext = React.createContext({
-  menu: [] as MenuItemWithMeal[],
-  setMenu: (menuProp: MenuItemWithMeal[]) => { },
+export const MenuContext = React.createContext<{
+  menu: MenuItemWithMeal[];
+  setMenu: React.Dispatch<React.SetStateAction<MenuItemWithMeal[]>>;
+}>({
+  menu: [],
+  setMenu: () => {},
 });
 
 process.env.API_URL = "http://192.168.0.104:3721"
