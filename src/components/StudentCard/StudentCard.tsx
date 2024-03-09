@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./StudentCard.module.css";
+import Image from "next/image";
 
 const StudentCard = () => {
     const studentName = "John Doe";
-    const studentPhoto = "https://example.com/photo.jpg";
+    const studentPhoto = "https://random.imagecdn.app/100/100";
     const studentRegistration = "123456789";
     const studentCourse = "Computer Science";
     const studentCampus = "Main Campus";
@@ -25,7 +26,7 @@ const StudentCard = () => {
                     </div>
                 </div>
                 <div className={styles.studentPhoto}>
-                    <img src={studentPhoto} alt="Foto do estudante" />
+                    <Image src={studentPhoto} alt="Foto do estudante" width={100} height={100} />
                 </div>
             </div>
             <div className={styles.group}>
