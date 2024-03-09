@@ -1,6 +1,5 @@
 .card {
     display: flex;
-    width: auto;
     padding: 1.5rem;
     flex-direction: column;
     align-items: flex-start;
@@ -9,7 +8,6 @@
     background: var(--branco);
     box-shadow: var(--sombra);
     font-size: 1.25rem;
-
 }
 
 .top {
@@ -25,7 +23,6 @@
     gap: 0.5rem;
     color: var(--preto);
     text-align: justify;
-    font-family: Roboto;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 700;
@@ -40,9 +37,8 @@
 
 .restrictAction a{
     text-decoration: none;
-    color: var(--vermelho);
+    color:var(--vermelho);
     text-align: justify;
-    font-family: Roboto;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;

@@ -7,6 +7,7 @@ import MealNameText from './MealNameText/MealNameText';
 import { MenuItemWithMeal } from '@/lib/types/MenuItemWithMeal';
 import CanceladoText from './SituationTexts/CanceladoText';
 import BloqueadoText from './SituationTexts/BloqueadoText';
+import Button from '../Button/Button';
 
 interface GenericCardProps {
   mealByDay: MenuItemWithMeal;
@@ -98,12 +99,12 @@ const MealCard = ({ mealByDay: menu, showDateAndTime }: GenericCardProps) => {
       }</div>
       {
         getSituationText(menu) === "DisponivelText" && (
-          <button className={styles.button}>Reservar</button>
+          <Button variant="verde">Reservar</Button>
         )
       }
       {
         getSituationText(menu) === "ReservadoText" && (
-          <button className={styles.button}>Cancelar</button>
+          <Button variant="vermelho-outline">Cancelar</Button>
         )
       }
     </div>
