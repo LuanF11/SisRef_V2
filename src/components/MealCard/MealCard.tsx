@@ -8,9 +8,10 @@ import { MenuItemWithMeal } from '@/lib/types/MenuItemWithMeal';
 import CanceladoText from './SituationTexts/CanceladoText';
 import BloqueadoText from './SituationTexts/BloqueadoText';
 import Button from '../Button/Button';
+import { MenuContext } from '@/app/layout';
 
 interface GenericCardProps {
-  mealByDay: MenuItemWithMeal;
+  menu: MenuItemWithMeal;
   showDateAndTime?: boolean;
 }
 
@@ -82,7 +83,21 @@ const getTime = (menu: MenuItemWithMeal, showDateAndTime: boolean | undefined) =
   return `${menu.meal.timeStart} - ${menu.meal.timeEnd}`;
 }
 
-const MealCard = ({ mealByDay: menu, showDateAndTime }: GenericCardProps) => {
+const MealCard = ({ menu, showDateAndTime }: GenericCardProps) => {
+  const menuContext = React.useContext(MenuContext);
+
+  const handleReservar = (id: number) => {
+    fetch(`http://localhost:3721/api/reserve-meal?id=${id}`)
+      .then(res => res.json())
+      .then(data => menuContext.setMenu(data))
+  }
+
+  const handleCancelar = (id: number) => {
+    fetch(`http://localhost:3721/api/cancel-meal?id=${id}`)
+      .then(res => res.json())
+      .then(data => menuContext.setMenu(data))
+  }
+
   return (
     <div className={styles.card}>
       <div className={styles.top}>
@@ -99,12 +114,12 @@ const MealCard = ({ mealByDay: menu, showDateAndTime }: GenericCardProps) => {
       }</div>
       {
         getSituationText(menu) === "DisponivelText" && (
-          <Button variant="verde">Reservar</Button>
+          <Button variant="verde" onClick={() => handleReservar(menu.id)}>Reservar</Button>
         )
       }
       {
         getSituationText(menu) === "ReservadoText" && (
-          <Button variant="vermelho-outline">Cancelar</Button>
+          <Button variant="vermelho-outline" onClick={() => handleCancelar(menu.id)}>Cancelar</Button>
         )
       }
     </div>

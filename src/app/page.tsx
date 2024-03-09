@@ -1,10 +1,13 @@
+"use client"
+
 import HeaderBar from "@/components/HeaderBar/HeaderBar";
 import MealCard from "@/components/MealCard/MealCard";
-import React from "react";
+import React, { useEffect } from "react";
 
 import style from "./page.module.css"
 import { MenuItemWithMeal } from "@/lib/types/MenuItemWithMeal";
 import CardAttention from "@/components/CardAttention/CardAttention";
+import { MenuContext } from "./layout";
 
 const cardProps: MenuItemWithMeal = {
   id: 2378,
@@ -48,16 +51,23 @@ cardProps5.meal.description = "Almoço"
 cardProps5.date = "2024-03-02"
 
 export default function Home() {
+  const menuContext = React.useContext(MenuContext);
+
+  useEffect(() => {
+    const response = fetch('http://localhost:3721/api/meal-by-day')
+    .then(res => res.json())
+    .then(data => menuContext.setMenu(data))
+  }, [])
+
   return (
     <>
-      <p>asdasd</p>
       <HeaderBar>Olaaaa</HeaderBar>
       <div className={style.mealContainer}>
-        <MealCard mealByDay={cardProps} />
-        <MealCard mealByDay={cardProps2} showDateAndTime />
-        <MealCard mealByDay={cardProps3} showDateAndTime />
-        <MealCard mealByDay={cardProps4} />
-        <MealCard mealByDay={cardProps5} />
+        {
+          menuContext.menu.map((menu) => (
+            <MealCard key={menu.id} menu={menu} showDateAndTime />
+          ))
+        }
       </div>
       <CardAttention>
           Devido à queda da internet no campus, todas as reservas de alimentação, exceto a do lanche da noite, serão feitas de maneira presencial na recepção.

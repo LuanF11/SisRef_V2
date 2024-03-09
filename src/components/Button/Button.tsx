@@ -4,9 +4,10 @@ import styles from "./Button.module.css";
 interface ButtonProps {
   children: React.ReactNode;
   variant: "verde" | "azul-escuro" | "branco" | "vermelho-outline";
+  onClick: (...args: any[]) => void
 }
 
-const Button = ({ children, variant }: ButtonProps) => {
+const Button = ({ children, variant, onClick }: ButtonProps) => {
   let style = styles.button + " ";
   switch (variant) {
     case "verde":
@@ -24,7 +25,7 @@ const Button = ({ children, variant }: ButtonProps) => {
   }
 
   return (
-    <button className={style}>{children}</button>
+    <button className={style} onClick={onClick}>{children}</button>
   );
 };
 
