@@ -5,6 +5,7 @@ import React from "react";
 import style from "./page.module.css"
 import { MenuItemWithMeal } from "@/lib/types/MenuItemWithMeal";
 import CardAttention from "@/components/CardAttention/CardAttention";
+import FoodRestrictionCard from "@/components/FoodRestrictCard/FoodRestrictCard";
 
 const cardProps: MenuItemWithMeal = {
   id: 2378,
@@ -62,6 +63,9 @@ export default function Home() {
       <CardAttention>
           Devido à queda da internet no campus, todas as reservas de alimentação, exceto a do lanche da noite, serão feitas de maneira presencial na recepção.
       </CardAttention>
+      <FoodRestrictionCard>
+        Leite
+      </FoodRestrictionCard>
     </>
   );
 }
