@@ -1,8 +1,16 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import styles from "./CardStudent.module.css";
+import styles from "./StudentCard.module.css";
 
-const CardStudent = ({ studentName, studentPhoto, studentRegistration, studentCourse, studentCampus, studentTurn, studentCod, studentMaturity}) => {
+const StudentCard = () => {
+    const studentName = "John Doe";
+    const studentPhoto = "https://example.com/photo.jpg";
+    const studentRegistration = "123456789";
+    const studentCourse = "Computer Science";
+    const studentCampus = "Main Campus";
+    const studentTurn = "Morning";
+    const studentCod = "ABC123";
+    const studentMaturity = "2022-12-31";
+
     return (
         <div className={styles.card}>
             <div className={styles.top}>
@@ -44,43 +52,8 @@ const CardStudent = ({ studentName, studentPhoto, studentRegistration, studentCo
                     <div className={styles.studentMaturity}>{studentMaturity}</div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                {/* <div className={styles.studentInfo}>
-                    <div className={styles.studentCourse}>{studentCourse}</div>
-                    <div className={styles.studentCampus}>{studentCampus}</div>
-                    <div className={styles.studentTurn}>{studentTurn}</div>
-                </div>
-            <div className={styles.bottom}>
-                <div className={styles.studentCod}>{studentCod}</div>
-                <div className={styles.studentMaturity}>{studentMaturity}</div>
-            </div> */}
         </div>
     );
 }
 
-CardStudent.propTypes = {
-    studentName: PropTypes.string.isRequired,
-    studentPhoto: PropTypes.string,
-    studentRegistration: PropTypes.string.isRequired,
-    studentCourse: PropTypes.string.isRequired,
-    studentCampus: PropTypes.string.isRequired,
-    studentTurn: PropTypes.string.isRequired,
-    studentCod: PropTypes.string.isRequired,
-    studentMaturity: PropTypes.string.isRequired,
-};
-
-export default CardStudent;
+export default StudentCard;

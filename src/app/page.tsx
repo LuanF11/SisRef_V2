@@ -6,6 +6,7 @@ import style from "./page.module.css"
 import { MenuItemWithMeal } from "@/lib/types/MenuItemWithMeal";
 import CardAttention from "@/components/CardAttention/CardAttention";
 import FoodRestrictionCard from "@/components/FoodRestrictCard/FoodRestrictCard";
+import StudentCard from "@/components/StudentCard/StudentCard";
 
 const cardProps: MenuItemWithMeal = {
   id: 2378,
@@ -66,6 +67,10 @@ export default function Home() {
       <FoodRestrictionCard>
         Leite
       </FoodRestrictionCard>
+      <StudentCard >
+
+      </StudentCard>
+     
     </>
   );
 }
