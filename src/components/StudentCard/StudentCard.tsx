@@ -1,15 +1,19 @@
 import React from "react";
 import styles from "./StudentCard.module.css";
+import { StudentInfo } from "@/lib/types/StudenInfo";
+import { CampusCod } from "@/lib/types/CampusCod";
 
-const StudentCard = () => {
-    const studentName = "John Doe";
-    const studentPhoto = "https://example.com/photo.jpg";
-    const studentRegistration = "123456789";
-    const studentCourse = "Computer Science";
-    const studentCampus = "Main Campus";
-    const studentTurn = "Morning";
-    const studentCod = "ABC123";
-    const studentMaturity = "2022-12-31";
+interface StudentCardProps {
+    student: StudentInfo;
+    campus: CampusCod;
+}
+
+const StudentCard = ({ student, campus}: StudentCardProps) => {
+
+    let campusName;
+    if(student.course.campus_id === campus.id) {
+        campusName = campus.description;
+    }
 
     return (
         <div className={styles.card}>
@@ -17,43 +21,46 @@ const StudentCard = () => {
                 <div className={styles.nameRegist}>
                     <div className={styles.group}>
                         <div className={styles.title}>Nome:</div>
-                        <div className={styles.studentName}>{studentName}</div>
+                        <div className={styles.studentName}>{student.name}</div>
                     </div>
                     <div className={styles.group}>
                         <div className={styles.title}>Matrícula:</div>
-                        <div className={styles.studentRegistration}>{studentRegistration}</div>
+                        <div className={styles.studentRegistration}>{student.mat}</div>
                     </div>
                 </div>
                 <div className={styles.studentPhoto}>
-                    <img src={studentPhoto} alt="Foto do estudante" />
+                    <img src={student.photo} alt="Foto do estudante" />
                 </div>
             </div>
             <div className={styles.group}>
                 <div className={styles.title}>Curso:</div>
-                <div className={styles.studentCourse}>{studentCourse}</div>
+                <div className={styles.studentCourse}>{student.course.description}</div>
             </div>
             <div className={styles.campTurn}>
                 <div className={styles.group}>
                     <div className={styles.title}>Campus:</div>
-                    <div className={styles.studentCampus}>{studentCampus}</div>
+                    <div className={styles.studentCampus}>
+                        {campus ? campusName : "Campus não encontrado"}
+                        </div>
                 </div>
                 <div className={styles.group}>
                     <div className={styles.title}>Turno:</div>
-                    <div className={styles.studentTurn}>{studentTurn}</div>
+                    <div className={styles.studentTurn}>Falta</div>
                 </div>
             </div>
             <div className={styles.codeMatu}>
                 <div className={styles.group}>
                     <div className={styles.title}>Código:</div>
-                    <div className={styles.studentCod}>{studentCod}</div>
+                    <div className={styles.studentCod}>{student.id}</div>
                 </div>
                 <div className={styles.group}>
                     <div className={styles.title}>Vencimento:</div>
-                    <div className={styles.studentMaturity}>{studentMaturity}</div>
+                    <div className={styles.studentMaturity}>{student.dateValid}</div>
                 </div>
             </div>
         </div>
     );
 }
+
 
 export default StudentCard;

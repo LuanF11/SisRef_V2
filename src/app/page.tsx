@@ -7,6 +7,8 @@ import { MenuItemWithMeal } from "@/lib/types/MenuItemWithMeal";
 import CardAttention from "@/components/CardAttention/CardAttention";
 import FoodRestrictionCard from "@/components/FoodRestrictCard/FoodRestrictCard";
 import StudentCard from "@/components/StudentCard/StudentCard";
+import { StudentInfo } from "@/lib/types/StudenInfo";
+import { CampusCod } from "@/lib/types/CampusCod";
 
 const cardProps: MenuItemWithMeal = {
   id: 2378,
@@ -28,6 +30,36 @@ const cardProps: MenuItemWithMeal = {
   }
 };
 
+const cardStudentProps: StudentInfo = {
+  id: 2149,
+  active: 1,
+  dateValid: "2024-03-08",
+  mat: "123456",
+  name: "João",
+  semRegular: 1,
+  course_id: 1,
+  shift_id: 1,
+  photo: null,
+  campus_id: 1,
+  observation: null,
+  republic: null,
+  block: null,
+  absent_meal: 1,
+  course: {
+    id: 1,
+    description: "Sistema de Informação",
+    initials: "BSI",
+    campus_id: 1
+  }
+};
+
+const infoCampus: CampusCod = {
+  id: 1,
+  description: "Cedro",
+};
+
+const campus = JSON.parse(JSON.stringify(infoCampus))
+const studentProps = JSON.parse(JSON.stringify(cardStudentProps))
 const cardProps2 = JSON.parse(JSON.stringify(cardProps))
 const cardProps3 = JSON.parse(JSON.stringify(cardProps))
 const cardProps4 = JSON.parse(JSON.stringify(cardProps))
@@ -67,9 +99,7 @@ export default function Home() {
       <FoodRestrictionCard>
         Leite
       </FoodRestrictionCard>
-      <StudentCard >
-
-      </StudentCard>
+      <StudentCard student={studentProps} campus={campus} />
      
     </>
   );
