@@ -1,14 +1,14 @@
 .card {
     display: flex;
-    width: 424px;
-    padding: 24px;
+    max-width: 34.812rem;
+    padding: 1.5rem;
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
-    border-radius: 4px;
-    background: #ffffff;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
-    font-size: 20px;
+    gap: 1.5rem;
+    border-radius: 0.25rem;
+    background: var(--branco);
+    box-shadow: var(--somnbra);
+    font-size: 1.25rem;
 }
 
 .top {
@@ -22,43 +22,40 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
-
+    gap: 1.5rem;
 }
 
 .studentPhoto img{
-    border-radius: 132px;
+    border-radius: 8.25rem;
     background: lightgray 50% / cover no-repeat, #D9D9D9;
 }
 
 .title{
-    color:#000;
+    color: var(--preto);
     text-align: justify;
     font-family: Roboto;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 16px;
+    line-height: 1rem;
 }
 
 .group{
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 0.75rem;
 }
 
 .campTurn{
     display: flex;
-    width: 416px;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 94px;
+    gap: 5.875rem;
 }
 
 .codeMatu{
     display: flex;
-    width: 416px;
     justify-content: space-between;
     align-items: flex-start;
 }
