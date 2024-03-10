@@ -24,10 +24,14 @@ const getSituationText = (menu: MenuItemWithMeal) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  if (!menu.permission) {
+  const mealDateTime = new Date(menu.date + " " + menu.meal.timeStart);
+
+  const reservationStartTime = new Date(mealDateTime);
+  reservationStartTime.setHours(reservationStartTime.getHours() - menu.meal.qtdTimeReservationStart);
+
+  if (!menu.permission || new Date() < reservationStartTime) {
     return "BloqueadoText";
   }
-
   if (menu.canceled_by_student) {
     return "CanceladoText";
   }
@@ -75,6 +79,8 @@ const getSituationElement = (menu: MenuItemWithMeal) => {
 const getTime = (menu: MenuItemWithMeal, showDateAndTime: boolean | undefined) => {
   if (showDateAndTime) {
     const date = new Date(menu.date);
+    // É necessário adicionar 1 dia para corrigir o fuso horário
+    date.setDate(date.getDate() + 1);
     const formattedDate = `${date.getDate()} ${date.toLocaleString('default', { month: 'short' })} ${date.getFullYear()}`;
 
     return `${formattedDate} - ${menu.meal.timeStart} - ${menu.meal.timeEnd}`;

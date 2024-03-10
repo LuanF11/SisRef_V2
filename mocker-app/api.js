@@ -40,7 +40,7 @@ const almoco = {
 
 const lancheDaTarde = {
     id: 2380,
-    date: "2024-03-12",
+    date: "2024-03-11",
     description: "Cuscuz c/ ovo ou carne moída + Suco de caju",
     campus_id: 1,
     meal_id: 2,
@@ -60,7 +60,7 @@ const lancheDaTarde = {
 
 const lancheDaNoite = {
     id: 2381,
-    date: "2024-03-08",
+    date: "2024-03-10",
     description: "Cuscuz c/ ovo ou carne moída + Suco de caju",
     campus_id: 1,
     meal_id: 3,
