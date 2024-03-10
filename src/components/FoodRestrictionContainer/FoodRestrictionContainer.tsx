@@ -4,9 +4,18 @@ import HeaderBar from "../HeaderBar/HeaderBar"
 
 import styles from "./FoodRestrictionContainer.module.css"
 import React from "react";
+import Button from "../Button/Button";
 
 export const FoodRestrictionContainer = () => {
     const foodRestrictionContext = React.useContext(FoodRestrictionContext);
+
+    const handleAdicionar = (restriction: string) => {
+        const response = fetch(`${process.env.API_URL}/api/add-food-restriction?restriction=${restriction}`)
+            .then(res => res.json())
+            .then(data => {
+                foodRestrictionContext.setFoodRestrictions(data);
+            });
+    }
 
     React.useEffect(() => {
         const response = fetch(`${process.env.API_URL}/api/food-restrictions`)
@@ -26,6 +35,7 @@ export const FoodRestrictionContainer = () => {
                         <div>Nenhuma restrição alimentar cadastrada</div>
                     )
                 }</div>
+            <Button variant="verde" onClick={() => handleAdicionar(String(prompt("Qual restrição você deseja adicionar?")))}>Adicionar restrição</Button>
         </div>
     )
 }

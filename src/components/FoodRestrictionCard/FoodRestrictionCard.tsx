@@ -5,7 +5,7 @@ import { FoodRestrictionContext } from "@/lib/contexts/FoodRestrictionContext";
 
 const FoodRestrictionCard = ({ children }: { children: React.ReactNode }) => {
   const foodRestrictionContext = React.useContext(FoodRestrictionContext);
-  
+
   const handleRemover = (restriction: string) => {
     const response = fetch(`${process.env.API_URL}/api/remove-food-restriction?restriction=${restriction}`)
       .then(res => res.json())
@@ -15,17 +15,19 @@ const FoodRestrictionCard = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <div className={styles.card}>
-      <div className={styles.top}>
-        <div className={styles.restrictName}>
+    <>
+      <div className={styles.card}>
+        <div className={styles.top}>
+          <div className={styles.restrictName}>
             <FoodRestrictionIcon />
             <span>{children}</span>
-        </div>
-        <div className={styles.restrictAction}>
+          </div>
+          <div className={styles.restrictAction}>
             <a onClick={() => handleRemover(String(children))}>Remover</a>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
