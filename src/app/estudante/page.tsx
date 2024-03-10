@@ -1,16 +1,17 @@
 "use client"
 
+import CardAttention from "@/components/CardAttention/CardAttention";
+import FoodRestrictionCard from "@/components/FoodRestrictionCard/FoodRestrictionCard";
 import HeaderBar from "@/components/HeaderBar/HeaderBar";
 import MealCard from "@/components/MealCard/MealCard";
-import React from "react";
-
-import style from "./page.module.css"
-import CardAttention from "@/components/CardAttention/CardAttention";
-import { FoodRestrictionContext, MenuContext } from "./layout";
-import FoodRestrictionCard from "@/components/FoodRestrictionCard/FoodRestrictionCard";
 import StudentCard from "@/components/StudentCard/StudentCard";
 
-export default function Home() {
+import style from "./page.module.css";
+import { MenuContext } from "@/lib/contexts/MenuContext";
+import React from "react";
+import { FoodRestrictionContext } from "@/lib/contexts/FoodRestrictionContext";
+
+export default function StudentPage() {
   const menuContext = React.useContext(MenuContext);
   const foodRestrictionContext = React.useContext(FoodRestrictionContext);
 
@@ -19,9 +20,13 @@ export default function Home() {
       <HeaderBar>Refeições do dia</HeaderBar>
       <div className={style.mealContainer}>
         {
-          menuContext.menu.map((menu) => (
+          menuContext.menu ? menuContext.menu.map((menu) => (
             <MealCard key={menu.id} menu={menu} showDateAndTime />
-          ))
+          )) : (
+            <div>
+              Nenhuma refeição cadastrada para o dia
+            </div>
+          )
         }
       </div>
       <CardAttention>

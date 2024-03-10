@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./FoodRestrictionCard.module.css";
 import FoodRestrictionIcon from "../Icons/FoodRestrictionIcon";
-import { FoodRestrictionContext } from "@/app/layout";
+import { FoodRestrictionContext } from "@/lib/contexts/FoodRestrictionContext";
 
 const FoodRestrictionCard = ({ children }: { children: React.ReactNode }) => {
   const foodRestrictionContext = React.useContext(FoodRestrictionContext);

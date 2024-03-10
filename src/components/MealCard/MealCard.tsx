@@ -8,7 +8,7 @@ import { MenuItemWithMeal } from '@/lib/types/MenuItemWithMeal';
 import CanceladoText from './SituationTexts/CanceladoText';
 import BloqueadoText from './SituationTexts/BloqueadoText';
 import Button from '../Button/Button';
-import { MenuContext } from '@/app/layout';
+import { MenuContext } from '@/lib/contexts/MenuContext';
 
 interface GenericCardProps {
   menu: MenuItemWithMeal;
