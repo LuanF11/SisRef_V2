@@ -1,42 +1,40 @@
 import React from "react";
 import { TokenType } from "../types/TokenType";
 
-export const TokenContext = React.createContext<{
-    token: TokenType | null;
-    setToken: React.Dispatch<React.SetStateAction<TokenType | null>>;
-}>({
-    token: null,
-    setToken: () => { }
-})
+const defaultContextValue = {
+  token: null as TokenType | null,
+  setToken: (token: TokenType | null) => {}
+};
+
+export const TokenContext = React.createContext(defaultContextValue);
 
 export const TokenProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [token, setToken] = React.useState<TokenType | null>(null);
+  const [token, setToken] = React.useState<TokenType | null>(null);
 
-    React.useEffect(() => {
-        const token = localStorage.getItem('@rucedro-Token');
-        const accessLevel = localStorage.getItem('@rucedro-acess-level-user');
-        const idUser = localStorage.getItem('@rucedro-id-user');
-        const activeUser = localStorage.getItem('@rucedro-active-user');
-        const campusUser = localStorage.getItem('@rucedro-campus-user');
-        const exp = localStorage.getItem('@rucedro-exp');
-        const nameUser = localStorage.getItem('@rucedro-name-user');
+  React.useEffect(() => {
+    const storedToken = localStorage.getItem('@rucedro-Token');
+    const storedValues = ['@rucedro-acess-level-user', '@rucedro-id-user', '@rucedro-active-user', '@rucedro-campus-user', '@rucedro-exp', '@rucedro-name-user']
+      .map(item => localStorage.getItem(item));
 
-        if (token && accessLevel && idUser && activeUser && campusUser && exp && nameUser) {
-            setToken({
-                access_token: token,
-                classfication: accessLevel,
-                id: Number(idUser),
-                active: Number(activeUser),
-                campus: Number(campusUser),
-                expires_in: Number(exp),
-                name: nameUser,
-                token_type: "bearer"
-            });
-        }
-    }, [])
-    return (
-        <TokenContext.Provider value={{ token, setToken }}>
-            {children}
-        </TokenContext.Provider>
-    )
+    if (storedToken && storedValues.every(item => item !== null)) {
+      setToken({
+        access_token: storedToken,
+        classfication: storedValues[0]!,
+        id: Number(storedValues[1]),
+        active: Number(storedValues[2]),
+        campus: Number(storedValues[3]),
+        expires_in: Number(storedValues[4]),
+        name: storedValues[5]!,
+        token_type: "bearer"
+      });
+    } else {
+      setToken(null);
+    }
+  }, []);
+
+  return (
+    <TokenContext.Provider value={{ token, setToken }}>
+      {children}
+    </TokenContext.Provider>
+  );
 }

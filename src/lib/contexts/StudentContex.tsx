@@ -1,16 +1,16 @@
-import React from "react";
+import { createContext, useState, useEffect, FC, useContext } from "react";
 import { StudentType } from "../types/StudentType";
 import { TokenContext } from "./TokenContext";
 
-export const StudentContext = React.createContext<StudentType | null>(null);
+export const StudentContext = createContext<StudentType | null>(null);
 
-export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const tokenContext = React.useContext(TokenContext);
-  const [student, setStudent] = React.useState<StudentType | null>(null);
+export const StudentProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
+  const tokenContext = useContext(TokenContext);
+  const [student, setStudent] = useState<StudentType | null>(null);
 
   const allCampi: StudentType["campus"][] = []
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch(`https://ruapi.cedro.ifce.edu.br/api/all/show-student/${tokenContext?.token?.id}`)
       .then((response) => response.json())
       .then((data: StudentType) => {
@@ -20,7 +20,7 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       });
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch("https://ruapi.cedro.ifce.edu.br/api/all/campus", {
       "headers": {
         "accept": "application/json, text/plain, */*",

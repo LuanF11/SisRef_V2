@@ -2,7 +2,7 @@ interface TokenType {
     access_token: string;
     token_type: string;
     id: number;
-    classfication: "STUDENT";
+    classfication: "STUDENT" | string;
     name: string;
     campus: number;
     active: number;
