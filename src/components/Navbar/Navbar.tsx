@@ -13,15 +13,17 @@ const Navbar = () => {
   }
 
   return (
-    <div className={styles.navbar}>
-      {
-        tokenContext.token && (
-          <>
-            <LogoutIcon onClick={handleLogout} />
-            <HamburgerMenuItem />
-          </>
-        )
-      }
+    <div className={styles.wrapper}>
+      <div className={styles.navbar}>
+        {
+          tokenContext.token && (
+            <>
+              <LogoutIcon onClick={handleLogout} />
+              <HamburgerMenuItem />
+            </>
+          )
+        }
+      </div>
     </div>
   );
 };
