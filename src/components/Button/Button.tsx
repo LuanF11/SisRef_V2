@@ -7,22 +7,15 @@ interface ButtonProps {
   onClick: (...args: any[]) => void
 }
 
+const variantStyles = {
+  "verde": styles.green,
+  "azul-escuro": styles.darkBlue,
+  "branco": styles.white,
+  "vermelho-outline": styles.redOutline
+};
+
 const Button = ({ children, variant, onClick }: ButtonProps) => {
-  let style = styles.button + " ";
-  switch (variant) {
-    case "verde":
-      style += styles.green;
-      break;
-    case "azul-escuro":
-      style += styles.darkBlue;
-      break;
-    case "branco":
-      style += styles.white;
-      break;
-    case "vermelho-outline":
-      style += styles.redOutline;
-      break;
-  }
+  const style = `${styles.button} ${variantStyles[variant]}`;
 
   return (
     <button className={style} onClick={onClick}>{children}</button>

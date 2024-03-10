@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './MealCard.module.css';
 import DisponivelText from './SituationTexts/DisponivelText';
 import EncerradoText from './SituationTexts/EncerradoText';
@@ -20,8 +20,6 @@ interface GenericCardProps {
 }
 
 const getSituationText = (menu: MenuItemWithMeal, isFromHistory?: boolean) => {
-  if (isFromHistory) return
-
   const menuDate = new Date(menu.date);
   // É necessário adicionar 1 dia para corrigir o fuso horário
   menuDate.setDate(menuDate.getDate() + 1);
@@ -143,20 +141,28 @@ const getMealName = (menu: MenuItemWithMeal, isFromHistory?: boolean) => {
   return menu.meal_id
 }
 
+const situationTexts = {
+  DisponivelText: <DisponivelText />,
+  EncerradoText: <EncerradoText />,
+  ReservadoText: <ReservadoText />,
+  CanceladoText: <CanceladoText />,
+  BloqueadoText: <BloqueadoText />,
+  JustificadoText: <JustificadoText />,
+  UtilizadoText: <UtilizadoText />,
+  NaoUtilizadoText: <NaoUtilizadoText />,
+};
+
 const MealCard = ({ menu, showDateAndTime, isFromHistory }: GenericCardProps) => {
-  const menuContext = React.useContext(MenuContext);
+  const { setMenu } = useContext(MenuContext);
 
-  const handleReservar = (id: number) => {
-    fetch(`${process.env.API_URL}/api/reserve-meal?id=${id}`)
+  const handleAction = (action: string, id: number) => {
+    fetch(`${process.env.API_URL}/api/${action}-meal?id=${id}`)
       .then(res => res.json())
-      .then(data => menuContext.setMenu(data))
+      .then(data => setMenu(data))
   }
 
-  const handleCancelar = (id: number) => {
-    fetch(`${process.env.API_URL}/api/cancel-meal?id=${id}`)
-      .then(res => res.json())
-      .then(data => menuContext.setMenu(data))
-  }
+  const situationText = isFromHistory ? getSituationTextFromHistory(menu) : getSituationText(menu);
+  const situationElement = situationTexts[situationText];
 
   return (
     <div className={styles.card}>
@@ -164,22 +170,22 @@ const MealCard = ({ menu, showDateAndTime, isFromHistory }: GenericCardProps) =>
         <div className={styles.mealName}>
           <MealNameText mealId={getMealName(menu, isFromHistory)} />
         </div>
-        <div className={styles.situation}>{getSituationElement(menu, isFromHistory)}</div>
+        <div className={styles.situation}>{situationElement}</div>
       </div>
       <div className={styles.time}>{getTime(menu, showDateAndTime)}</div>
       <div className={styles.mealDescription}>{getFoodDescription(menu, isFromHistory)}</div>
       {
-        getSituationText(menu, isFromHistory) === "DisponivelText" && (
-          <Button variant="verde" onClick={() => handleReservar(menu.id)}>Reservar</Button>
+        situationText === "DisponivelText" && (
+          <Button variant="verde" onClick={() => handleAction('reserve', menu.id)}>Reservar</Button>
         )
       }
       {
-        getSituationText(menu, isFromHistory) === "ReservadoText" && (
-          <Button variant="vermelho-outline" onClick={() => handleCancelar(menu.id)}>Cancelar</Button>
+        situationText === "ReservadoText" && (
+          <Button variant="vermelho-outline" onClick={() => handleAction('cancel', menu.id)}>Cancelar</Button>
         )
       }
       {
-        isFromHistory && getSituationTextFromHistory(menu) === "JustificadoText" && (
+        isFromHistory && situationText === "JustificadoText" && (
           menu.absenceJustification && <span className={styles.justification}><b>Justificativa:</b> {menu.absenceJustification}</span>
         )
       }

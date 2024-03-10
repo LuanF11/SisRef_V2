@@ -6,6 +6,12 @@ import HeaderBar from "../HeaderBar/HeaderBar";
 import MealCard from "../MealCard/MealCard";
 import styles from './HistoryContainer.module.css';
 
+const HISTORY_URLS = [
+    "https://ruapi.cedro.ifce.edu.br/api/student/schedulings/used?page=1",
+    "https://ruapi.cedro.ifce.edu.br/api/student/schedulings/not-used?page=1",
+    "https://ruapi.cedro.ifce.edu.br/api/student/schedulings/canceled?page=1"
+];
+
 const HistoryContainer = () => {
     const { token } = useContext(TokenContext);
     const [historyData, setHistoryData] = useState<MenuItemWithMeal[] | null>(null);
@@ -25,19 +31,9 @@ const HistoryContainer = () => {
     useEffect(() => {
         if (!token) return;
 
-        const urls = [
-            "https://ruapi.cedro.ifce.edu.br/api/student/schedulings/used?page=1",
-            "https://ruapi.cedro.ifce.edu.br/api/student/schedulings/not-used?page=1",
-            "https://ruapi.cedro.ifce.edu.br/api/student/schedulings/canceled?page=1"
-        ];
-
         const fetchAllHistory = async () => {
-            const allHistoryData: DataType[] = [];
-
-            for (const url of urls) {
-                const history = await fetchHistory(url);
-                allHistoryData.push(...history.data);
-            }
+            const allHistoryData: DataType[] = await Promise.all(HISTORY_URLS.map(fetchHistory))
+                .then(histories => histories.flatMap(history => history.data));
 
             allHistoryData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
