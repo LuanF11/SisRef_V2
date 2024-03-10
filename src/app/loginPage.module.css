@@ -1,0 +1,98 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.4375rem;
+
+}
+
+.names{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.names .nameRU{
+    color: var(--verde-logo);
+    text-align: center;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.875rem;
+}
+
+.names .nameCampus{
+    color: var(--preto);
+    text-align: center;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.875rem;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    
+}
+
+.groupForm input{
+    
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    border-radius: 0.25rem;
+    border: 0.125rem solid var(--cinza);
+    
+}
+
+.groupForm input::placeholder{
+    color: var(--cinza);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.extra{
+    display: flex;
+    align-items: flex-start;
+    gap: 4.9375rem;
+}
+
+.remenber{
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.remenber input[type="checkbox"]{
+    border-radius: 0.25rem;
+    border: 0.125rem solid var(--preto);
+}
+
+.forgot a{
+    color: var(--vermelho);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.send{
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.25rem;
+    border: none;
+    background: var(--azul-escuro) ;
+    color: var(--branco);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

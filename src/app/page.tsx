@@ -9,6 +9,7 @@ import FoodRestrictionCard from "@/components/FoodRestrictCard/FoodRestrictCard"
 import StudentCard from "@/components/StudentCard/StudentCard";
 import { StudentInfo } from "@/lib/types/StudenInfo";
 import { CampusCod } from "@/lib/types/CampusCod";
+import LoginPage from "./loginPage";
 
 const cardProps: MenuItemWithMeal = {
   id: 2378,
@@ -100,6 +101,8 @@ export default function Home() {
         Leite
       </FoodRestrictionCard>
       <StudentCard student={studentProps} campus={campus} />
+
+      <LoginPage />
      
     </>
   );
