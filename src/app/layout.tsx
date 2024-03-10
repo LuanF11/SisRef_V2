@@ -6,7 +6,7 @@ import { TokenProvider } from "@/lib/contexts/TokenContext";
 import { PageRouter } from "@/components/PageRouter/PageRouter";
 import Navbar from "@/components/Navbar/Navbar";
 
-process.env.API_URL = "http://192.168.0.104:3721"
+process.env.API_URL = "http://192.168.0.114:3721"
 
 export default function RootLayout() {
   return (
