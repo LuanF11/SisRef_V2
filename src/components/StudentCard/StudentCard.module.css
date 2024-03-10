@@ -32,14 +32,12 @@
 }
 
 .field{
-    display: flex;
-    flex-direction: column;
+    display: grid;
     row-gap: .5rem;
 }
 
 .studentPhoto img{
-    border-radius: 8.25rem;
-    background: lightgray 50% / cover no-repeat, #D9D9D9;
+    border-radius: 50%;
 }
 
 .title{
@@ -49,14 +47,13 @@
 }
 
 .campusAndShift{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 5.875rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 1rem;
 }
 
-.codeMatu{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+.codeAndMaturity{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 1rem;
 }
