@@ -42,9 +42,6 @@
 
 .time {
     color: var(--cinza);
-    text-align: justify;
-    font-style: normal;
-    font-weight: 400;
     line-height: 1rem; 
 }
 

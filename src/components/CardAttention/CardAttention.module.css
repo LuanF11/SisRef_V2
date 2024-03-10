@@ -6,7 +6,6 @@
     gap: 1rem;
     border-radius: .25rem;
     background: var(--vermelho);
-    font-size: 0.87rem;
 
     grid-area: atention;
 }
@@ -17,17 +16,12 @@
     gap: .25rem;
     color: var(--branco);
     text-align: justify;
-    font-size: 0.87rem;
-    font-style: normal;
-    font-weight: 700;
+    font-weight: bold;
     line-height: 1rem;
 }
 
 .content{
     color: var(--branco);
     text-align: justify;
-    font-size: 0.87rem;
-    font-style: normal;
-    font-weight: 400;
     line-height: normal;
 }
