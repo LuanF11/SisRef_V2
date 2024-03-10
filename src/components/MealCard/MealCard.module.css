@@ -52,3 +52,12 @@
     align-items: flex-start;
     row-gap: 1rem;
 }
+
+.justification {
+    color: var(--cinza);
+    line-height: 1.5rem;
+}
+
+.justification b {
+    font-weight: bold;
+}

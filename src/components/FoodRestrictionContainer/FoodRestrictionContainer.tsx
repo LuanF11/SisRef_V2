@@ -24,18 +24,21 @@ export const FoodRestrictionContainer = () => {
     }, [])
 
     return (
-        <div className={styles.wrapper}>
-            <HeaderBar>Restrições alimentares</HeaderBar>
-            <div className={styles.container}>{
-                foodRestrictionContext.foodRestrictions.map((restriction, index) => (
-                    <FoodRestrictionCard key={index}>{restriction}</FoodRestrictionCard>
-                ))
-            }{
-                    foodRestrictionContext.foodRestrictions.length === 0 && (
-                        <div>Nenhuma restrição alimentar cadastrada</div>
-                    )
-                }</div>
-            <Button variant="verde" onClick={() => handleAdicionar(String(prompt("Qual restrição você deseja adicionar?")))}>Adicionar restrição</Button>
+        <div>
+            <div className={styles.wrapper}>
+                <HeaderBar>Restrições alimentares</HeaderBar>
+                <div className={styles.container}>{
+                    foodRestrictionContext.foodRestrictions.map((restriction, index) => (
+                        <FoodRestrictionCard key={index}>{restriction}</FoodRestrictionCard>
+                    ))
+                }{
+                        foodRestrictionContext.foodRestrictions.length === 0 && (
+                            <div>Nenhuma restrição alimentar cadastrada</div>
+                        )
+                    }</div>
+                <Button variant="verde" onClick={() => handleAdicionar(String(prompt("Qual restrição você deseja adicionar?")))}>Adicionar restrição</Button>
+            </div>
         </div>
+
     )
 }

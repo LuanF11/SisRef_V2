@@ -9,13 +9,19 @@ import CanceladoText from './SituationTexts/CanceladoText';
 import BloqueadoText from './SituationTexts/BloqueadoText';
 import Button from '../Button/Button';
 import { MenuContext } from '@/lib/contexts/MenuContext';
+import JustificadoText from './SituationTexts/JustificadoText';
+import NaoUtilizadoText from './SituationTexts/NaoUtilizadoText';
+import UtilizadoText from './SituationTexts/UtilizadoText';
 
 interface GenericCardProps {
   menu: MenuItemWithMeal;
   showDateAndTime?: boolean;
+  isFromHistory?: boolean;
 }
 
-const getSituationText = (menu: MenuItemWithMeal) => {
+const getSituationText = (menu: MenuItemWithMeal, isFromHistory?: boolean) => {
+  if (isFromHistory) return
+
   const menuDate = new Date(menu.date);
   // É necessário adicionar 1 dia para corrigir o fuso horário
   menuDate.setDate(menuDate.getDate() + 1);
@@ -59,8 +65,32 @@ const getSituationText = (menu: MenuItemWithMeal) => {
   return "ReservadoText";
 }
 
-const getSituationElement = (menu: MenuItemWithMeal) => {
-  const situationText = getSituationText(menu);
+const getSituationTextFromHistory = (menu: MenuItemWithMeal) => {
+  const menuDate = new Date(menu.date);
+  // É necessário adicionar 1 dia para corrigir o fuso horário
+  menuDate.setDate(menuDate.getDate() + 1);
+  menuDate.setHours(0, 0, 0, 0);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  if (menu.canceled_by_student) {
+    return "CanceladoText";
+  }
+
+  if (menu.absenceJustification) {
+    return "JustificadoText";
+  }
+
+  if (menuDate < today) {
+    return "UtilizadoText";
+  }
+
+  return "NaoUtilizadoText";
+}
+
+const getSituationElement = (menu: MenuItemWithMeal, isFromHistory?: boolean) => {
+  const situationText = isFromHistory ? getSituationTextFromHistory(menu) : getSituationText(menu);
 
   switch (situationText) {
     case "DisponivelText":
@@ -73,6 +103,12 @@ const getSituationElement = (menu: MenuItemWithMeal) => {
       return <CanceladoText />;
     case "BloqueadoText":
       return <BloqueadoText />;
+    case "JustificadoText":
+      return <JustificadoText />;
+    case "UtilizadoText":
+      return <UtilizadoText />;
+    case "NaoUtilizadoText":
+      return <NaoUtilizadoText />;
   }
 }
 
@@ -89,7 +125,25 @@ const getTime = (menu: MenuItemWithMeal, showDateAndTime: boolean | undefined) =
   return `${menu.meal.timeStart} - ${menu.meal.timeEnd}`;
 }
 
-const MealCard = ({ menu, showDateAndTime }: GenericCardProps) => {
+const getFoodDescription = (menu: MenuItemWithMeal, isFromHistory?: boolean) => {
+  if (isFromHistory) {
+    return menu.description.split(/[;+]/).map((food, index) => (
+      <span key={index}>{food}</span>
+    ))
+  }
+
+  return menu.description.split(/[;+]/).map((food, index) => (
+    <span key={index}>{food}</span>
+  ))
+}
+
+const getMealName = (menu: MenuItemWithMeal, isFromHistory?: boolean) => {
+  if (isFromHistory) return menu.meal.id - 1
+
+  return menu.meal_id
+}
+
+const MealCard = ({ menu, showDateAndTime, isFromHistory }: GenericCardProps) => {
   const menuContext = React.useContext(MenuContext);
 
   const handleReservar = (id: number) => {
@@ -108,24 +162,25 @@ const MealCard = ({ menu, showDateAndTime }: GenericCardProps) => {
     <div className={styles.card}>
       <div className={styles.top}>
         <div className={styles.mealName}>
-          <MealNameText mealId={menu.meal_id} />
+          <MealNameText mealId={getMealName(menu, isFromHistory)} />
         </div>
-        <div className={styles.situation}>{getSituationElement(menu)}</div>
+        <div className={styles.situation}>{getSituationElement(menu, isFromHistory)}</div>
       </div>
       <div className={styles.time}>{getTime(menu, showDateAndTime)}</div>
-      <div className={styles.mealDescription}>{
-        menu.description.split(/[;+]/).map((food, index) => (
-          <span key={index}>{food}</span>
-        ))
-      }</div>
+      <div className={styles.mealDescription}>{getFoodDescription(menu, isFromHistory)}</div>
       {
-        getSituationText(menu) === "DisponivelText" && (
+        getSituationText(menu, isFromHistory) === "DisponivelText" && (
           <Button variant="verde" onClick={() => handleReservar(menu.id)}>Reservar</Button>
         )
       }
       {
-        getSituationText(menu) === "ReservadoText" && (
+        getSituationText(menu, isFromHistory) === "ReservadoText" && (
           <Button variant="vermelho-outline" onClick={() => handleCancelar(menu.id)}>Cancelar</Button>
+        )
+      }
+      {
+        isFromHistory && getSituationTextFromHistory(menu) === "JustificadoText" && (
+          menu.absenceJustification && <span className={styles.justification}><b>Justificativa:</b> {menu.absenceJustification}</span>
         )
       }
     </div>
