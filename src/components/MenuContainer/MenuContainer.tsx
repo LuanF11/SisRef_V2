@@ -3,7 +3,7 @@ import React from "react";
 import HeaderBar from "../HeaderBar/HeaderBar";
 import MealCard from "../MealCard/MealCard";
 
-import style from "./MenuContainer.module.css";
+import styles from "./MenuContainer.module.css";
 
 export const MenuContainer = () => {
     const menuContext = React.useContext(MenuContext);
@@ -15,12 +15,13 @@ export const MenuContainer = () => {
     }, [])
 
     return (
-        <>
+        <div className={styles.wrapper}>
             <HeaderBar>Refeições do dia</HeaderBar>
-            <div className={style.container}>
                 {
-                    menuContext.menu ? menuContext.menu.map((menu) => (
-                        <MealCard key={menu.id} menu={menu} showDateAndTime />
+                    menuContext.menu ? menuContext.menu.map((menu, index) => (
+                        <div className={styles.mealWrapper} key={index}>
+                            <MealCard key={menu.id} menu={menu} showDateAndTime />
+                        </div>
                     )) : (
                         <div>
                             Nenhuma refeição cadastrada para o dia
@@ -28,6 +29,5 @@ export const MenuContainer = () => {
                     )
                 }
             </div>
-        </>
     );
 }

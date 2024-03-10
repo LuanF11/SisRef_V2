@@ -1,5 +1,39 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
+.wrapper {
+  display: grid;
+  row-gap: 1rem;
+
+  grid-area: menu;
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 2rem;
+
+    grid-template-areas: "header header"
+                       "lancheDaManha almoco"
+                       "lancheDaTarde lancheDaNoite";
   }
+
+  .wrapper header {
+    grid-area: header;
+    grid-column: span 2;
+  }
+  
+  .mealWrapper:nth-of-type(1) {
+    grid-area: lancheDaManha;
+  }
+  
+  .mealWrapper:nth-of-type(2) {
+    grid-area: almoco;
+  }
+  
+  .mealWrapper:nth-of-type(3) {
+    grid-area: lancheDaTarde;
+  }
+  
+  .mealWrapper:nth-of-type(4) {
+    grid-area: lancheDaNoite;
+  }
+}

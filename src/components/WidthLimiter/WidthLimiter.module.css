@@ -2,8 +2,28 @@
   display: flex;
   flex-direction: column;
   row-gap: 1.5rem;
+
   
   max-width: min(1200px, 100%);
+  padding-top: 1.5rem;
   padding-inline: 1.5rem;
   margin-inline: auto;
+}
+
+@media only screen and (min-width: 1024px) {
+  .widthLimiter {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    justify-content: center;
+    column-gap: 2rem;
+    row-gap: 2rem;
+
+    grid-template-areas: "studentCardAndAttention           menu"
+                         "studentCardAndAttention           menu"
+                         "foodRestriction                history";
+
+    padding-top: 2rem;
+
+
+  }
 }

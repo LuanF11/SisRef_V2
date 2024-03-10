@@ -9,22 +9,27 @@ import { FoodRestrictionProvider } from "@/lib/contexts/FoodRestrictionContext";
 import { MenuContainer } from "@/components/MenuContainer/MenuContainer";
 import { FoodRestrictionContainer } from "@/components/FoodRestrictionContainer/FoodRestrictionContainer";
 
+import styles from "./page.module.css";
+
 export default function StudentPage() {
   return (
     <>
+    <div className={styles.studentCardAndAttentionWrapper}>
+      <StudentCard />
+      <CardAttention>
+        Devido à queda da internet no campus, todas as reservas de alimentação, exceto a do lanche da noite, serão feitas de maneira presencial na recepção.
+      </CardAttention>
+    </div>
+
+      
       <MenuProvider>
         <MenuContainer />
       </MenuProvider>
       
-      <CardAttention>
-        Devido à queda da internet no campus, todas as reservas de alimentação, exceto a do lanche da noite, serão feitas de maneira presencial na recepção.
-      </CardAttention>
-
       <FoodRestrictionProvider>
         <FoodRestrictionContainer />
       </FoodRestrictionProvider>
 
-      <StudentCard />
     </>
   );
 }

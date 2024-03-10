@@ -5,6 +5,7 @@ import React from "react";
 import { TokenProvider } from "@/lib/contexts/TokenContext";
 import { PageRouter } from "@/components/PageRouter/PageRouter";
 import Navbar from "@/components/Navbar/Navbar";
+import WidthLimiter from "@/components/WidthLimiter/WidthLimiter";
 
 process.env.API_URL = "http://192.168.0.114:3721"
 
@@ -18,8 +19,10 @@ export default function RootLayout() {
           <title>Document</title>
         </head>
         <body>
-          <Navbar/>
-          <PageRouter />
+          <Navbar />
+          <WidthLimiter>
+            <PageRouter />
+          </WidthLimiter>
         </body>
       </html>
     </TokenProvider>

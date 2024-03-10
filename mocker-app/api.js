@@ -86,7 +86,7 @@ const todasAsRefeicoes = [
 ];
 
 const  foodRestrictions = [
-    "leite",
+    "Leite",
     "Ovo",
     "Macarrão"
 ]

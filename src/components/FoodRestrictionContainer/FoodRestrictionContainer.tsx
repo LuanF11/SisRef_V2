@@ -2,7 +2,7 @@ import { FoodRestrictionContext } from "@/lib/contexts/FoodRestrictionContext";
 import FoodRestrictionCard from "../FoodRestrictionCard/FoodRestrictionCard"
 import HeaderBar from "../HeaderBar/HeaderBar"
 
-import style from "./FoodRestrictionContainer.module.css"
+import styles from "./FoodRestrictionContainer.module.css"
 import React from "react";
 
 export const FoodRestrictionContainer = () => {
@@ -15,9 +15,9 @@ export const FoodRestrictionContainer = () => {
     }, [])
 
     return (
-        <>
+        <div className={styles.wrapper}>
             <HeaderBar>Restrições alimentares</HeaderBar>
-            <div className={style.container}>{
+            <div className={styles.container}>{
                 foodRestrictionContext.foodRestrictions.map((restriction, index) => (
                     <FoodRestrictionCard key={index}>{restriction}</FoodRestrictionCard>
                 ))
@@ -26,6 +26,6 @@ export const FoodRestrictionContainer = () => {
                         <div>Nenhuma restrição alimentar cadastrada</div>
                     )
                 }</div>
-        </>
+        </div>
     )
 }
