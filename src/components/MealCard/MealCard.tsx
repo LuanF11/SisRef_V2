@@ -8,11 +8,11 @@ import { MenuItemWithMeal } from '@/lib/types/MenuItemWithMeal';
 import CanceladoText from './SituationTexts/CanceladoText';
 import BloqueadoText from './SituationTexts/BloqueadoText';
 import Button from '../Button/Button';
-import { MenuContext } from '@/lib/contexts/MenuContext';
 import JustificadoText from './SituationTexts/JustificadoText';
 import NaoUtilizadoText from './SituationTexts/NaoUtilizadoText';
 import UtilizadoText from './SituationTexts/UtilizadoText';
 import { TokenContext } from '@/lib/contexts/TokenContext';
+import { FoodRestrictionContext } from '@/lib/contexts/FoodRestrictionContext';
 
 interface GenericCardProps {
   menu: MenuItemWithMeal;
@@ -40,10 +40,6 @@ const getSituationText = (menu: MenuItemWithMeal, isFromHistory?: boolean) => {
   }
   if (menu.canceled_by_student) {
     return "CanceladoText";
-  }
-
-  if (menu.agendado) {
-    return "ReservadoText";
   }
 
   if (menuDate < today) {
@@ -87,29 +83,6 @@ const getSituationTextFromHistory = (menu: MenuItemWithMeal) => {
   }
 
   return "NaoUtilizadoText";
-}
-
-const getSituationElement = (menu: MenuItemWithMeal, isFromHistory?: boolean) => {
-  const situationText = isFromHistory ? getSituationTextFromHistory(menu) : getSituationText(menu);
-
-  switch (situationText) {
-    case "DisponivelText":
-      return <DisponivelText />;
-    case "EncerradoText":
-      return <EncerradoText />;
-    case "ReservadoText":
-      return <ReservadoText />;
-    case "CanceladoText":
-      return <CanceladoText />;
-    case "BloqueadoText":
-      return <BloqueadoText />;
-    case "JustificadoText":
-      return <JustificadoText />;
-    case "UtilizadoText":
-      return <UtilizadoText />;
-    case "NaoUtilizadoText":
-      return <NaoUtilizadoText />;
-  }
 }
 
 const getTime = (menu: MenuItemWithMeal, showDateAndTime: boolean | undefined) => {
@@ -156,8 +129,19 @@ const situationTexts = {
 
 const MealCard = ({ menu, showDateAndTime, isFromHistory, reload}: GenericCardProps) => {
   const { token } = useContext(TokenContext)
+  const { foodRestrictions } = useContext(FoodRestrictionContext)
 
   const handleReservar = (id: number, date: string) => {
+    // check if the chosen meal has one of the food restrictions in its description
+    const mealDescription = menu.description.split(/[;+]/)
+    const hasFoodRestriction = mealDescription.some(food => foodRestrictions.includes(food))
+
+    if (hasFoodRestriction) {
+      alert("Você não pode reservar essa refeição pois ela contém um alimento que você não pode consumir.")
+      return
+    }
+
+
     fetch(`${process.env.API_URL}/api/student/schedulings/new`, {
       method: "POST",
       headers: {

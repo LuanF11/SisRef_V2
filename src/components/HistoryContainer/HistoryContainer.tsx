@@ -64,12 +64,14 @@ const HistoryContainer = () => {
 
         const canceledMealsIds = canceledMeals.map((canceled) => canceled.id)
         const menuofTodayWithCanceledMeals = mealsInTheHistoryThatAreFromToday.map((menu) => {
-            if (canceledMealsIds.includes(menu.id) || menu.date == today) {
+            if (canceledMealsIds.includes(menu.id)) {
                 return {
                     ...menu,
                     canceled_by_student: true
                 }
             }
+
+            if (menu.date == today) return menu
 
             return menu
         })
