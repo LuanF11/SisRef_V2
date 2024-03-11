@@ -34,7 +34,6 @@
 .field{
     display: grid;
     row-gap: .5rem;
-    font-weight: bold;
 }
 
 .studentPhoto img{

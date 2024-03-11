@@ -31,21 +31,25 @@ const getShiftAsString = (shift: number | undefined) => {
     return shift;
 }
 
-function getTagVariant(dateValid: Date, active: number): string {
-    if (active == 0){ 
-        return 'vermelho';
+function getTagVariant(dateValid?: string, active?: number) {
+    if (!dateValid || active === undefined) {
+        return "azul";
     }
-    const now = new Date();
-    const validDate = new Date(dateValid);
-    const diffDays = Math.ceil((validDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+
+    if (active === 0) {
+        return "vermelho";
+    }
+
+    const diffDays = Math.ceil((new Date(dateValid).getTime() - Date.now()) / (1000 * 60 * 60 * 24));
 
     if (diffDays <= 5) {
-        return 'vermelho';
-    } else if (diffDays <= 10) {
-        return 'laranja'; 
-    } else {
-        return 'azul';
+        return "vermelho";
     }
+    if (diffDays <= 10) {
+        return "laranja";
+    }
+
+    return "verde";
 }
 
 const StudentCard = () => {
@@ -63,20 +67,20 @@ const StudentCard = () => {
                         </div>
                         <div className={styles.field}>
                             <div className={styles.title}>Matrícula:</div>
-                            <div className={styles.studentRegistration}>{student?.mat || <Skeleton  width={150}/>}</div>
+                            <div className={styles.studentRegistration}>{student?.mat || <Skeleton width={150} />}</div>
                         </div>
                     </div>
                     <div className={styles.studentPhoto}>
                         {student?.photo && (
-                        <Image src={student?.photo} alt="Foto" width={100} height={100} />
+                            <Image src={student?.photo} alt="Foto" width={100} height={100} />
                         ) || (
-                            <Skeleton height={100} width={100}/>
-                        )}
+                                <Skeleton height={100} width={100} />
+                            )}
                     </div>
                 </div>
                 <div className={styles.field}>
                     <div className={styles.title}>Curso:</div>
-                    <div className={styles.studentCourse}>{student?.course?.description || <Skeleton width={250}/>}</div>
+                    <div className={styles.studentCourse}>{student?.course?.description || <Skeleton width={250} />}</div>
                 </div>
                 <div className={styles.campusAndShift}>
                     <div className={styles.field}>
@@ -91,11 +95,14 @@ const StudentCard = () => {
                 <div className={styles.codeAndMaturity}>
                     <div className={styles.field}>
                         <div className={styles.title}>Código:</div>
-                        <Tag variant="laranja">{student?.id || <Skeleton />}</Tag>
+                        <Tag variant="azul">{student?.id || <Skeleton />}</Tag>
                     </div>
                     <div className={styles.field}>
                         <div className={styles.title}>Vencimento:</div>
-                        <Tag variant={getTagVariant(student?.dateValid, student?.active)}>{student?.active === 0 ? 'Inativo' : student?.dateValid || <Skeleton />}</Tag>
+                        <Tag variant={getTagVariant(student?.dateValid, student?.active)}>{
+                            student?.active === 0 ?
+                                'Inativo' : 
+                                student?.dateValid ? new Date(student?.dateValid).toLocaleDateString('en-GB') : <Skeleton />}</Tag>
                     </div>
                 </div>
             </div>
