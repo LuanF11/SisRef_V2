@@ -13,6 +13,7 @@ import styles from "./page.module.css";
 import { StudentProvider } from "@/lib/contexts/StudentContex";
 import HistoryContainer from "@/components/HistoryContainer/HistoryContainer";
 
+
 export default function StudentPage() {
   return (
     <>
@@ -22,7 +23,6 @@ export default function StudentPage() {
           <StudentCard />
         </StudentProvider>
         <CardAttention>
-          Devido à queda da internet no campus, todas as reservas de alimentação, exceto a do lanche da noite, serão feitas de maneira presencial na recepção.
         </CardAttention>
       </div>
 

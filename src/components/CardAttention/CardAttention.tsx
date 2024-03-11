@@ -1,12 +1,20 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./CardAttention.module.css";
 import AlertIcon from "../Icons/AlertIcon";
 import Button from "../Button/Button";
 
 
 
-const CardAttention = ({ children }: { children: React.ReactNode }) => {
+const CardAttention = () => {
   const [isVisible, setIsVisible] = useState(true);
+
+  const [message, setMessage] = useState<{message:string}>({message:''});
+
+  useEffect(() => {
+    const response = fetch(`${process.env.LOCAL_API_URL}/api/alert`)
+        .then(res => res.json())
+        .then(data => setMessage(data))
+  }, [])
   return(
     isVisible && (
   <div className={styles.card}>
@@ -15,7 +23,7 @@ const CardAttention = ({ children }: { children: React.ReactNode }) => {
       <span>Atenção</span>
     </div>
     <div className={styles.content}>
-      {children}
+      {message.message}
     </div>
     <Button variant="branco" onClick={() => setIsVisible(false)}>Entendido</Button>
   </div>
