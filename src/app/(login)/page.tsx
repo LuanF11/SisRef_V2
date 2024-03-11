@@ -7,6 +7,9 @@ import { TokenContext } from '@/lib/contexts/TokenContext';
 import StudentPage from '../estudante/page';
 import { MenuProvider } from '@/lib/contexts/MenuContext';
 import { FoodRestrictionProvider } from '@/lib/contexts/FoodRestrictionContext';
+import styles from './page.module.css';
+import Image from 'next/image';
+import sisrefLogo from '@/../public/assets/img/sisrefLogo.png';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -63,37 +66,49 @@ const LoginPage = () => {
     )
 
     return (
-        <Container component="main" maxWidth="xs">
-            <Typography component="h1" variant="h5">
-                Login
-            </Typography>
-            <form onSubmit={handleSubmit}>
-                <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email"
-                    name="email"
-                    autoComplete="email"
-                    autoFocus
-                    value={email}
-                    onChange={handleEmailChange}
-                />
-                <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Senha"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    value={password}
-                    onChange={handlePasswordChange}
-                />
+        <>
+        <head>
+            <title>Login</title>
+            <link rel="icon" href="./assets/img/sisrefIcon.png" />
+        </head>
+        <div className={styles.container}>
+            <Image src={sisrefLogo} alt="Sisref" />
+            <div className={styles.names}>
+                <div className={styles.nameRU}>Restaurante Universitário</div>
+                <div className={styles.nameCampus}>IFCE Campus Cedro</div>
+            </div>
+            <form className= {styles.form} onSubmit={handleSubmit}>
+                <div className={styles.groupForm}>
+                    <input
+                        type="email"
+                        name="Email"
+                        id="Email"
+                        value={email}
+                        placeholder="Email"
+                        onChange={handleEmailChange}
+                    />
+                </div>
+                <div className={styles.groupForm}>
+                    <input
+                        type="password"
+                        name="Password"
+                        id="Password"
+                        placeholder="Senha"
+                        value={password}
+                        onChange={handlePasswordChange}
+                    />
+                </div>
+                <div className={styles.extra}>
+                    <div className={styles.remember}>
+                        <input
+                            type="checkbox"
+                            name="remember"
+                            id="remember"
+                        />
+                        <label htmlFor="remember">Lembre-se de mim</label>
+                    </div>
+                        <a href="#" className={styles.forgot}>Esqueceu a senha?</a>
+                </div>
                 <Button
                     type="submit"
                     fullWidth
@@ -103,7 +118,8 @@ const LoginPage = () => {
                     Entrar
                 </Button>
             </form>
-        </Container>
+        </div>
+        </>
     );
 }
 
