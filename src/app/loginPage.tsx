@@ -1,16 +1,15 @@
 import React from "react";
 import styles from "./loginPage.module.css"; 
+import sisrefLogo from "./sisrefLogo.png";
 
 
 const loginPage = () => {
     return (
         <div className={styles.container}>
-            <div className={styles.logo}>
-                logo
-            </div>
+            <img src={sisrefLogo} alt="imagem aqui" />
             <div className={styles.names}>
-                <div className={styles.nameRU}>asas fdfd</div>
-                <div className={styles.nameCampus}>dfdfdf dfdfdf</div>
+                <div className={styles.nameRU}>Restaurante Universitario</div>
+                <div className={styles.nameCampus}>Campus Cedro</div>
             </div>
             <form className= {styles.form}>
                 <div className={styles.groupForm}>
@@ -38,9 +37,7 @@ const loginPage = () => {
                         />
                         <label htmlFor="remember">Lembra</label>
                     </div>
-                    <div className={styles.forgot}>
-                        <a href="#">Esqueceu a senha?</a>
-                    </div>
+                        <a href="#" className={styles.forgot}>Esqueceu a senha?</a>
                 </div>
                 <input type="submit" value="Enviar" className={styles.send} />
             </form>

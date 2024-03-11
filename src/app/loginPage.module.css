@@ -7,9 +7,8 @@
 }
 
 .names{
-    display: inline-flex;
+    display:flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .names .nameRU{
@@ -33,19 +32,16 @@
 .form{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 1rem;
-    
 }
 
 .groupForm input{
-    
     display: flex;
     padding: 1rem;
     align-items: center;
     border-radius: 0.25rem;
     border: 0.125rem solid var(--cinza);
-    
+    width: 90%
 }
 
 .groupForm input::placeholder{
@@ -58,12 +54,11 @@
 
 .extra{
     display: flex;
-    align-items: flex-start;
     gap: 4.9375rem;
 }
 
 .remenber{
-    display: inline-flex;
+    display: flex;
     align-items: flex-start;
     gap: 0.5rem;
 }
@@ -85,7 +80,7 @@
 .send{
     display: flex;
     padding: 1rem;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     border-radius: 0.25rem;
     border: none;

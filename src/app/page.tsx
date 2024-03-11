@@ -85,7 +85,7 @@ cardProps5.date = "2024-03-02"
 export default function Home() {
   return (
     <>
-      <p>asdasd</p>
+      {/* <p>asdasd</p>
       <HeaderBar>Olaaaa</HeaderBar>
       <div className={style.mealContainer}>
         <MealCard mealByDay={cardProps} />
@@ -93,15 +93,14 @@ export default function Home() {
         <MealCard mealByDay={cardProps3} showDateAndTime />
         <MealCard mealByDay={cardProps4} />
         <MealCard mealByDay={cardProps5} />
-      </div>
-      <CardAttention>
+      </div> */}
+      {/* <CardAttention>
           Devido à queda da internet no campus, todas as reservas de alimentação, exceto a do lanche da noite, serão feitas de maneira presencial na recepção.
       </CardAttention>
       <FoodRestrictionCard>
         Leite
-      </FoodRestrictionCard>
-      <StudentCard student={studentProps} campus={campus} />
-
+      </FoodRestrictionCard> */}
+      {/* <StudentCard student={studentProps} campus={campus} /> */}
       <LoginPage />
      
     </>
