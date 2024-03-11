@@ -31,6 +31,23 @@ const getShiftAsString = (shift: number | undefined) => {
     return shift;
 }
 
+function getTagVariant(dateValid: Date, active: number): string {
+    if (active == 0){ 
+        return 'vermelho';
+    }
+    const now = new Date();
+    const validDate = new Date(dateValid);
+    const diffDays = Math.ceil((validDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+
+    if (diffDays <= 5 || active == 0) {
+        return 'vermelho';
+    } else if (diffDays <= 10) {
+        return 'laranja'; 
+    } else {
+        return 'azul';
+    }
+}
+
 const StudentCard = () => {
     const student = React.useContext(StudentContext);
 
@@ -74,11 +91,11 @@ const StudentCard = () => {
                 <div className={styles.codeAndMaturity}>
                     <div className={styles.field}>
                         <div className={styles.title}>Código:</div>
-                        <Tag variant="azul">{student?.id || <Skeleton />}</Tag>
+                        <Tag variant="laranja">{student?.id || <Skeleton />}</Tag>
                     </div>
                     <div className={styles.field}>
                         <div className={styles.title}>Vencimento:</div>
-                        <Tag variant="laranja">{student?.dateValid || <Skeleton />}</Tag>
+                        <Tag variant={getTagVariant(student?.dateValid, student?.active)}>{student?.dateValid || <Skeleton />}</Tag>
                     </div>
                 </div>
             </div>
