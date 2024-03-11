@@ -1,0 +1,27 @@
+.tag{
+    display: flex;
+    padding: 0.25rem 1rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.25rem;
+}
+
+.green {
+    background-color: var(--verde-logo);
+    color: var(--branco)
+}
+
+.red{
+    background-color: var(--vermelho);
+    color: var(--branco)
+}
+
+.orange{
+    background-color: var(--laranja);
+    color: var(--branco)
+}
+
+.blue{
+    background-color: var(--azul-claro);
+    color: var(--branco)
+}

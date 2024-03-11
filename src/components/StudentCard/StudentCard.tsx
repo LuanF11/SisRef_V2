@@ -4,6 +4,7 @@ import Image from "next/image";
 import HeaderBar from "../HeaderBar/HeaderBar";
 import { StudentContext } from "@/lib/contexts/StudentContex";
 import { Skeleton } from "@mui/material";
+import Tag from "../Tag/Tag";
 
 const toCapitalFirstLetter = (name: string | undefined) => {
     if (!name) return name;
@@ -73,11 +74,11 @@ const StudentCard = () => {
                 <div className={styles.codeAndMaturity}>
                     <div className={styles.field}>
                         <div className={styles.title}>Código:</div>
-                        <div className={styles.studentCod}>{student?.id || <Skeleton />}</div>
+                        <Tag variant="azul">{student?.id || <Skeleton />}</Tag>
                     </div>
                     <div className={styles.field}>
                         <div className={styles.title}>Vencimento:</div>
-                        <div className={styles.studentMaturity}>{student?.dateValid || <Skeleton />}</div>
+                        <Tag variant="laranja">{student?.dateValid || <Skeleton />}</Tag>
                     </div>
                 </div>
             </div>
