@@ -100,8 +100,8 @@ export default function Home() {
       <FoodRestrictionCard>
         Leite
       </FoodRestrictionCard> */}
-      {/* <StudentCard student={studentProps} campus={campus} /> */}
-      <LoginPage />
+      <StudentCard student={studentProps} campus={campus} />
+      {/* <LoginPage /> */}
      
     </>
   );

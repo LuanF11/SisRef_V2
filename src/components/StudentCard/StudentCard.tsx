@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./StudentCard.module.css";
 import { StudentInfo } from "@/lib/types/StudenInfo";
 import { CampusCod } from "@/lib/types/CampusCod";
+import Tag from "../Tag/Tag";
 
 interface StudentCardProps {
     student: StudentInfo;
@@ -51,11 +52,11 @@ const StudentCard = ({ student, campus}: StudentCardProps) => {
             <div className={styles.codeMatu}>
                 <div className={styles.group}>
                     <div className={styles.title}>Código:</div>
-                    <div className={styles.studentCod}>{student.id}</div>
+                    <Tag variant="laranja">{student.id}</Tag>
                 </div>
-                <div className={styles.group}>
+                <div className={styles.group} id="maturity">
                     <div className={styles.title}>Vencimento:</div>
-                    <div className={styles.studentMaturity}>{student.dateValid}</div>
+                    <Tag variant="azul">{student.dateValid}</Tag>
                 </div>
             </div>
         </div>
