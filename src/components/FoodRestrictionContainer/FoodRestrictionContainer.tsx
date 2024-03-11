@@ -5,6 +5,7 @@ import HeaderBar from "../HeaderBar/HeaderBar"
 import styles from "./FoodRestrictionContainer.module.css"
 import React from "react";
 import Button from "../Button/Button";
+import CheckIcon from "../Icons/CheckIcon";
 
 export const FoodRestrictionContainer = () => {
     const foodRestrictionContext = React.useContext(FoodRestrictionContext);
@@ -27,6 +28,19 @@ export const FoodRestrictionContainer = () => {
         <div>
             <div className={styles.wrapper}>
                 <HeaderBar>Restrições alimentares</HeaderBar>
+                <div className={styles.card}>
+                    <div className={styles.top}>
+                        <div className={styles.restrictName}>
+                            <span><CheckIcon variant="verde"/>Como funcionam os alertas?</span>
+                            <p>
+                                Quando você tentar reservar uma refeição que contenha um alimento sinalizado por você como restrição alimentar, o sistema exibirá uma caixa de confirmação alertando que tal refeição possui ingredientes sinalizados como restritos e perguntando se deseja confirmar a reserva.
+                            </p>
+                            <b>
+                                Isso não impede que você reserve a refeição.
+                            </b>
+                        </div>
+                    </div>
+                </div>
                 <div className={styles.container}>{
                     foodRestrictionContext.foodRestrictions.map((restriction, index) => (
                         <FoodRestrictionCard key={index}>{restriction}</FoodRestrictionCard>
