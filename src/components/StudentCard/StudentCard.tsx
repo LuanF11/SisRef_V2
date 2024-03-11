@@ -39,7 +39,7 @@ function getTagVariant(dateValid: Date, active: number): string {
     const validDate = new Date(dateValid);
     const diffDays = Math.ceil((validDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
 
-    if (diffDays <= 5 || active == 0) {
+    if (diffDays <= 5) {
         return 'vermelho';
     } else if (diffDays <= 10) {
         return 'laranja'; 
@@ -95,7 +95,7 @@ const StudentCard = () => {
                     </div>
                     <div className={styles.field}>
                         <div className={styles.title}>Vencimento:</div>
-                        <Tag variant={getTagVariant(student?.dateValid, student?.active)}>{student?.dateValid || <Skeleton />}</Tag>
+                        <Tag variant={getTagVariant(student?.dateValid, student?.active)}>{student?.active === 0 ? 'Inativo' : student?.dateValid || <Skeleton />}</Tag>
                     </div>
                 </div>
             </div>
