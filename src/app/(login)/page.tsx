@@ -10,6 +10,7 @@ import { FoodRestrictionProvider } from '@/lib/contexts/FoodRestrictionContext';
 import styles from './page.module.css';
 import Image from 'next/image';
 import sisrefLogo from '@/../public/assets/img/sisrefLogo.png';
+import Head from 'next/head';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -67,58 +68,62 @@ const LoginPage = () => {
 
     return (
         <>
-        <head>
-            <title>Login</title>
-            <link rel="icon" href="./assets/img/sisrefIcon.png" />
-        </head>
-        <div className={styles.container}>
-            <Image src={sisrefLogo} alt="Sisref" />
-            <div className={styles.names}>
-                <div className={styles.nameRU}>Restaurante Universitário</div>
-                <div className={styles.nameCampus}>IFCE Campus Cedro</div>
-            </div>
-            <form className= {styles.form} onSubmit={handleSubmit}>
-                <div className={styles.groupForm}>
-                    <input
-                        type="email"
-                        name="Email"
-                        id="Email"
-                        value={email}
-                        placeholder="Email"
-                        onChange={handleEmailChange}
-                    />
+            <Head>
+                <title>Login</title>
+                <link rel="icon" href="./assets/img/sisrefIcon.png" />
+            </Head>
+            <div className={styles.container}>
+                <Image src={sisrefLogo} alt="Sisref" />
+                <div className={styles.names}>
+                    <div className={styles.nameRU}>Restaurante Universitário</div>
+                    <div className={styles.nameCampus}>IFCE Campus Cedro</div>
                 </div>
-                <div className={styles.groupForm}>
-                    <input
-                        type="password"
-                        name="Password"
-                        id="Password"
-                        placeholder="Senha"
-                        value={password}
-                        onChange={handlePasswordChange}
-                    />
-                </div>
-                <div className={styles.extra}>
-                    <div className={styles.remember}>
-                        <input
-                            type="checkbox"
-                            name="remember"
-                            id="remember"
+                <form className={styles.form} onSubmit={handleSubmit}>
+                    <div className={styles.groupForm}>
+                        <TextField
+                            type="email"
+                            name="Email"
+                            id="Email"
+                            value={email}
+                            onChange={handleEmailChange}
+                            fullWidth
+                            variant="outlined"
+                            label="Email"
                         />
-                        <label htmlFor="remember">Lembre-se de mim</label>
                     </div>
+                    <div className={styles.groupForm}>
+                        <TextField
+                            type="password"
+                            name="Password"
+                            id="Password"
+                            value={password}
+                            onChange={handlePasswordChange}
+                            fullWidth
+                            variant="outlined"
+                            label="Senha"
+                        />
+                    </div>
+                    <div className={styles.extra}>
+                        <div className={styles.remember}>
+                            <input
+                                type="checkbox"
+                                name="remember"
+                                id="remember"
+                            />
+                            <label htmlFor="remember">Lembre-se de mim</label>
+                        </div>
                         <a href="#" className={styles.forgot}>Esqueceu a senha?</a>
-                </div>
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                >
-                    Entrar
-                </Button>
-            </form>
-        </div>
+                    </div>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                    >
+                        Entrar
+                    </Button>
+                </form>
+            </div>
         </>
     );
 }
