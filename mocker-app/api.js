@@ -162,7 +162,7 @@ const proxy = {
         const messages = [
             'Devido à queda da internet no campus, todas as reservas de alimentação, exceto a do lanche da noite, serão feitas de maneira presencial na recepção.',
             'O lanche da noite sofreu alterações.',
-            'Devido à falta de energia no refeitorio o lanche da noite será servido em frente a CAE.',
+            'Devido à falta de energia no refeitorio o lanche da noite será servido em frente à CAE.',
         ];
     
         const randomIndex = Math.floor(Math.random() * messages.length);
