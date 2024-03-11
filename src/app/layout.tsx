@@ -7,7 +7,7 @@ import { PageRouter } from "@/components/PageRouter/PageRouter";
 import Navbar from "@/components/Navbar/Navbar";
 import WidthLimiter from "@/components/WidthLimiter/WidthLimiter";
 
-process.env.API_URL = "http://192.168.0.114:3721"
+process.env.API_URL = "https://ruapi.cedro.ifce.edu.br"
 
 export default function RootLayout() {
   return (

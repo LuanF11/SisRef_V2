@@ -12,11 +12,13 @@ import { MenuContext } from '@/lib/contexts/MenuContext';
 import JustificadoText from './SituationTexts/JustificadoText';
 import NaoUtilizadoText from './SituationTexts/NaoUtilizadoText';
 import UtilizadoText from './SituationTexts/UtilizadoText';
+import { TokenContext } from '@/lib/contexts/TokenContext';
 
 interface GenericCardProps {
   menu: MenuItemWithMeal;
   showDateAndTime?: boolean;
   isFromHistory?: boolean;
+  reload: () => void
 }
 
 const getSituationText = (menu: MenuItemWithMeal, isFromHistory?: boolean) => {
@@ -152,13 +154,34 @@ const situationTexts = {
   NaoUtilizadoText: <NaoUtilizadoText />,
 };
 
-const MealCard = ({ menu, showDateAndTime, isFromHistory }: GenericCardProps) => {
+const MealCard = ({ menu, showDateAndTime, isFromHistory, reload}: GenericCardProps) => {
   const { setMenu } = useContext(MenuContext);
+  const { token } = useContext(TokenContext)
 
-  const handleAction = (action: string, id: number) => {
-    fetch(`${process.env.API_URL}/api/${action}-meal?id=${id}`)
-      .then(res => res.json())
-      .then(data => setMenu(data))
+  const handleReservar = (id: number, date: string) => {
+    fetch(`${process.env.API_URL}/api/student/schedulings/new`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token?.access_token}`,
+      },
+      body: JSON.stringify({
+        date: date,
+        meal_id: id
+      })
+    })
+    .then(res => res.json())
+    .then(data => reload())
+  }
+
+  const handleCancelar = (id: number, date: string) => {
+    fetch(`https://ruapi.cedro.ifce.edu.br/api/student/schedulings/cancel?meal_id=${id}&date=${date}`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `Bearer ${token?.access_token}`,
+      },
+    })
+    .then(res => res.json())
+    .then(data => reload())
   }
 
   const situationText = isFromHistory ? getSituationTextFromHistory(menu) : getSituationText(menu);
@@ -176,12 +199,12 @@ const MealCard = ({ menu, showDateAndTime, isFromHistory }: GenericCardProps) =>
       <div className={styles.mealDescription}>{getFoodDescription(menu, isFromHistory)}</div>
       {
         situationText === "DisponivelText" && (
-          <Button variant="verde" onClick={() => handleAction('reserve', menu.id)}>Reservar</Button>
+          <Button variant="verde" onClick={() => handleReservar(menu.id, menu.date)}>Reservar</Button>
         )
       }
       {
         situationText === "ReservadoText" && (
-          <Button variant="vermelho-outline" onClick={() => handleAction('cancel', menu.id)}>Cancelar</Button>
+          <Button variant="vermelho-outline" onClick={() => handleCancelar(menu.id, menu.date)}>Cancelar</Button>
         )
       }
       {

@@ -49,7 +49,11 @@ const StudentCard = () => {
                         </div>
                     </div>
                     <div className={styles.studentPhoto}>
-                        <Image src={student?.photo || "https://random.imagecdn.app/100/100"} alt="Foto" width={100} height={100} />
+                        {student?.photo && (
+                        <Image src={student?.photo} alt="Foto" width={100} height={100} />
+                        ) || (
+                            <Skeleton height={100} width={100}/>
+                        )}
                     </div>
                 </div>
                 <div className={styles.field}>
