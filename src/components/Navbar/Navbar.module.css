@@ -1,17 +1,30 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--verde-logo);
+    color: var(--verde-logo);
+
+    padding: 1rem 1.5rem;
+}
+
 .navbar {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
 
-    padding: 1.6rem 2.4rem;
+    width: 100%;
 
-    background: var(--verde-logo);
-    color: var(--verde-logo);
+    max-width: 1200px;
+
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
     .navbar {
-        padding: 1.2rem 8rem;
+        margin-inline: 1.5rem;
+        padding: .5rem 2rem;
     }
 }

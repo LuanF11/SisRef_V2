@@ -1,0 +1,11 @@
+.wrapper {
+    display: grid;
+    row-gap: 1rem;
+
+    grid-area: history;
+}
+
+.container {
+    display: grid;
+    row-gap: 1rem;
+}

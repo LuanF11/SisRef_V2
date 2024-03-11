@@ -7,6 +7,7 @@ interface MenuItemWithMeal {
     permission: number;
     agendado: boolean;
     canceled_by_student: boolean;
+    absenceJustification?: string;
     meal: {
         id: number;
         description: string;

@@ -1,52 +1,58 @@
+.wrapper {
+    grid-area: studentCard;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
 .card {
     display: flex;
-    max-width: 34.812rem;
-    padding: 1.5rem;
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5rem;
+    
+    padding: 1.5rem;
+
     border-radius: 0.25rem;
     background: var(--branco);
-    box-shadow: var(--somnbra);
-    font-size: 1.25rem;
+    box-shadow: var(--sombra);
 }
 
 .top {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
     align-self: stretch;
 }
 
-.nameRegist{
+.nameAndMatricula{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5rem;
 }
 
+.field{
+    display: grid;
+    row-gap: .5rem;
+}
+
 .studentPhoto img{
-    border-radius: 8.25rem;
-    background: lightgray 50% / cover no-repeat, #D9D9D9;
+    border-radius: 50%;
 }
 
 .title{
     color: var(--preto);
     text-align: justify;
-    font-family: Roboto;
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1rem;
+    font-weight: bold;
 }
 
-.group{
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
+.campusAndShift{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 1rem;
 }
 
+<<<<<<< HEAD
 .campTurn{
     display: flex;
     justify-content: space-between;
@@ -59,3 +65,10 @@
     justify-content: space-between;
     align-items: flex-start;
 }
+=======
+.codeAndMaturity{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 1rem;
+}
+>>>>>>> main

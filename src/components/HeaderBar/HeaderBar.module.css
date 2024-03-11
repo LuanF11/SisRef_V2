@@ -4,11 +4,11 @@
     justify-content: center;
     gap: 2rem;
 
+    max-height: fit-content;
     padding: 1rem;
     
     font-weight: bold;
     color: var(--branco);
     background: var(--preto);
-    font-size: 1rem;
     border-radius: 0.25rem;
 }

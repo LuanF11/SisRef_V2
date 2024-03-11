@@ -1,3 +1,4 @@
+import React from 'react';
 import FullSunIcon from "@/components/Icons/FullSunIcon";
 import MoonIcon from "@/components/Icons/MoonIcon";
 import SunriseIcon from "@/components/Icons/SunriseIcon";
@@ -7,47 +8,29 @@ interface MealNameTextProps {
     mealId: number;
 }
 
-const LancheDaManha = () => {
-    return <>
-        <SunriseIcon />
-        <span className="text-regular">Café da manhã</span>
-    </>;
+interface Meal {
+    icon: React.ElementType;
+    text: string;
+}
+
+const mealNames: Record<number, Meal> = {
+    1: { icon: SunriseIcon, text: 'Café da manhã' },
+    2: { icon: FullSunIcon, text: 'Almoço' },
+    3: { icon: SunsetIcon, text: 'Lanche da tarde' },
+    4: { icon: MoonIcon, text: 'Lanche da noite' },
 };
 
-const Almoco = () => {
-    return <>
-        <FullSunIcon />
-        <span className="text-regular">Almoço</span>
-    </>;
-}
-
-const LancheDaTarde = () => {
-    return <>
-        <SunsetIcon />
-        <span className="text-regular">Lanche da tarde</span>
-    </>;
-}
-
-const LancheDaNoite = () => {
-    return <>
-        <MoonIcon />
-        <span className="text-regular">Lanche da noite</span>
-    </>;
-}
-
 const MealNameText = ({ mealId }: MealNameTextProps) => {
-    switch (mealId) {
-        case 0:
-            return <LancheDaManha />;
-        case 1:
-            return <Almoco />;
-        case 2:
-            return <LancheDaTarde />;
-        case 3:
-            return <LancheDaNoite />;
-        default:
-            return <span className="text-regular">Refeição</span>;
-    }
+    const meal: Meal | undefined = mealNames[mealId];
+    const Icon = meal ? meal.icon : null;
+    const text = meal ? meal.text : 'Refeição';
+
+    return (
+        <>
+            {Icon && <Icon />}
+            <span className="text-regular">{text}</span>
+        </>
+    );
 };
 
 export default MealNameText;

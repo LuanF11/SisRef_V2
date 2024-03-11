@@ -7,7 +7,6 @@
     border-radius: 0.25rem;
     background: var(--branco);
     box-shadow: var(--sombra);
-    font-size: 1.25rem;
 }
 
 .top {
@@ -23,9 +22,7 @@
     gap: 0.5rem;
     color: var(--preto);
     text-align: justify;
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 700;
+    font-weight: bold;
     line-height: 1rem;
 }
   
@@ -39,8 +36,6 @@
     text-decoration: none;
     color:var(--vermelho);
     text-align: justify;
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 400;
     line-height: 1rem;
+    cursor: pointer
 }
