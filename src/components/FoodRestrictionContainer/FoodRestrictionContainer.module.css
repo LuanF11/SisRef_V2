@@ -10,3 +10,43 @@
   flex-direction: column;
   row-gap: 1rem;
 }
+
+.card {
+  padding: 1.5rem;
+  border-radius: 0.25rem;
+  background: var(--branco);
+  box-shadow: var(--sombra);
+
+}
+
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.restrictName{
+  display: grid;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--preto);
+  text-align: justify;
+}
+
+.restrictName span {
+  display: flex;
+  column-gap: 0.5rem;
+  align-items: center;
+  font-weight: bold;
+  color: var(--verde-logo);
+}
+
+.restrictName p {
+  line-height: 1.5rem;
+}
+
+.restrictName b {
+  font-weight: bold;
+}
