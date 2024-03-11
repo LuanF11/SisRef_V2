@@ -18,7 +18,7 @@ interface GenericCardProps {
   menu: MenuItemWithMeal;
   showDateAndTime?: boolean;
   isFromHistory?: boolean;
-  reload: () => void
+  reload?: () => void
 }
 
 const getSituationText = (menu: MenuItemWithMeal, isFromHistory?: boolean) => {
@@ -138,7 +138,7 @@ const getFoodDescription = (menu: MenuItemWithMeal, isFromHistory?: boolean) => 
 }
 
 const getMealName = (menu: MenuItemWithMeal, isFromHistory?: boolean) => {
-  if (isFromHistory) return menu.meal.id - 1
+  if (isFromHistory) return menu.meal.id
 
   return menu.meal_id
 }
@@ -155,7 +155,6 @@ const situationTexts = {
 };
 
 const MealCard = ({ menu, showDateAndTime, isFromHistory, reload}: GenericCardProps) => {
-  const { setMenu } = useContext(MenuContext);
   const { token } = useContext(TokenContext)
 
   const handleReservar = (id: number, date: string) => {
@@ -170,7 +169,7 @@ const MealCard = ({ menu, showDateAndTime, isFromHistory, reload}: GenericCardPr
       })
     })
     .then(res => res.json())
-    .then(data => reload())
+    .then(data => reload?.())
   }
 
   const handleCancelar = (id: number, date: string) => {
@@ -181,7 +180,7 @@ const MealCard = ({ menu, showDateAndTime, isFromHistory, reload}: GenericCardPr
       },
     })
     .then(res => res.json())
-    .then(data => reload())
+    .then(data => reload?.())
   }
 
   const situationText = isFromHistory ? getSituationTextFromHistory(menu) : getSituationText(menu);

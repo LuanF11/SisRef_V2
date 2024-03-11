@@ -10,7 +10,7 @@ export const FoodRestrictionContainer = () => {
     const foodRestrictionContext = React.useContext(FoodRestrictionContext);
 
     const handleAdicionar = (restriction: string) => {
-        const response = fetch(`${process.env.API_URL}/api/add-food-restriction?restriction=${restriction}`)
+        const response = fetch(`${process.env.LOCAL_API_URL}/api/add-food-restriction?restriction=${restriction}`)
             .then(res => res.json())
             .then(data => {
                 foodRestrictionContext.setFoodRestrictions(data);
@@ -18,7 +18,7 @@ export const FoodRestrictionContainer = () => {
     }
 
     React.useEffect(() => {
-        const response = fetch(`${process.env.API_URL}/api/food-restrictions`)
+        const response = fetch(`${process.env.LOCAL_API_URL}/api/food-restrictions`)
             .then(res => res.json())
             .then(data => foodRestrictionContext.setFoodRestrictions(data))
     }, [])

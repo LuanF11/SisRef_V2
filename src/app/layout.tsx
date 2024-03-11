@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import WidthLimiter from "@/components/WidthLimiter/WidthLimiter";
 
 process.env.API_URL = "https://ruapi.cedro.ifce.edu.br"
+process.env.LOCAL_API_URL = "http://localhost:3721"
 
 export default function RootLayout() {
   return (

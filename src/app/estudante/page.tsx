@@ -27,13 +27,13 @@ export default function StudentPage() {
 
       <MenuProvider>
         <MenuContainer />
-      </MenuProvider>
 
       <FoodRestrictionProvider>
         <FoodRestrictionContainer />
       </FoodRestrictionProvider>
 
-      <HistoryContainer />
+        <HistoryContainer />
+      </MenuProvider>
     </>
   );
 }

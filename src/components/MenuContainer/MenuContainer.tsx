@@ -19,15 +19,20 @@ const MenuContainer = () => {
     })
       .then(res => res.json())
       .then(setMenu);
-  }, [setMenu]);
+  }, [setMenu, token?.access_token]);
 
-  const meals = menu 
+  const meals = menu
     ? menu.map((meal, index) => (
-        <div className={styles.mealWrapper} key={index}>
-          <MealCard key={meal.id} menu={meal} showDateAndTime reload={() => setShouldReload(!shouldReload)}/>
-        </div>
-      ))
-    : Array(4).fill(<MealCardSkeleton />);
+      <div className={styles.mealWrapper} key={index}>
+        <MealCard key={meal.id} menu={meal} showDateAndTime reload={() => setShouldReload(!shouldReload)} />
+      </div>
+    ))
+    : <>
+      <MealCardSkeleton key={1} />
+      <MealCardSkeleton key={2} />
+      <MealCardSkeleton key={3} />
+      <MealCardSkeleton key={4} />
+    </>
 
   return (
     <div className={styles.wrapper}>

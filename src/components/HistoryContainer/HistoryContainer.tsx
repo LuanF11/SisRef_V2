@@ -5,6 +5,7 @@ import { TokenContext } from "@/lib/contexts/TokenContext";
 import HeaderBar from "../HeaderBar/HeaderBar";
 import MealCard from "../MealCard/MealCard";
 import styles from './HistoryContainer.module.css';
+import { MenuContext } from "@/lib/contexts/MenuContext";
 
 const HISTORY_URLS = [
     "https://ruapi.cedro.ifce.edu.br/api/student/schedulings/used?page=1",
@@ -15,21 +16,22 @@ const HISTORY_URLS = [
 const HistoryContainer = () => {
     const { token } = useContext(TokenContext);
     const [historyData, setHistoryData] = useState<MenuItemWithMeal[] | null>(null);
-
-    const fetchHistory = async (url: string) => {
-        const response = await fetch(url, {
-            headers: {
-                "accept": "application/json, text/plain, */*",
-                "authorization": `Bearer ${token?.access_token}`,
-            },
-            method: "GET",
-            mode: "cors"
-        });
-        return response.json() as Promise<HistoryType>;
-    };
+    const { menu, setMenu } = useContext(MenuContext)
 
     useEffect(() => {
         if (!token) return;
+
+        const fetchHistory = async (url: string) => {
+            const response = await fetch(url, {
+                headers: {
+                    "accept": "application/json, text/plain, */*",
+                    "authorization": `Bearer ${token?.access_token}`,
+                },
+                method: "GET",
+                mode: "cors"
+            });
+            return response.json() as Promise<HistoryType>;
+        };
 
         const fetchAllHistory = async () => {
             const allHistoryData: DataType[] = await Promise.all(HISTORY_URLS.map(fetchHistory))
@@ -51,6 +53,29 @@ const HistoryContainer = () => {
 
         fetchAllHistory();
     }, [token]);
+
+    useEffect(() => {
+        if (!menu || !historyData) return;
+
+        const today = new Date().toISOString().split("T")[0];
+        const mealsInTheHistoryThatAreFromToday = historyData.filter(menu => menu.date === today);
+
+        const canceledMeals = mealsInTheHistoryThatAreFromToday.filter(menu => menu.canceled_by_student);
+
+        const canceledMealsIds = canceledMeals.map((canceled) => canceled.id)
+        const menuWithCanceledMeals = menu.map((menu) => {
+            if (canceledMealsIds.includes(menu.id)) {
+                return {
+                    ...menu,
+                    canceled_by_student: true
+                }
+            }
+            return menu
+        })
+
+        setMenu(menuWithCanceledMeals);
+
+    }, [historyData, menu, setMenu]);
 
     return (
         <div className={styles.wrapper}>

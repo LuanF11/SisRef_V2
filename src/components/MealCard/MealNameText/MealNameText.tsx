@@ -14,10 +14,10 @@ interface Meal {
 }
 
 const mealNames: Record<number, Meal> = {
-    0: { icon: SunriseIcon, text: 'Café da manhã' },
-    1: { icon: FullSunIcon, text: 'Almoço' },
-    2: { icon: SunsetIcon, text: 'Lanche da tarde' },
-    3: { icon: MoonIcon, text: 'Lanche da noite' },
+    1: { icon: SunriseIcon, text: 'Café da manhã' },
+    2: { icon: FullSunIcon, text: 'Almoço' },
+    3: { icon: SunsetIcon, text: 'Lanche da tarde' },
+    4: { icon: MoonIcon, text: 'Lanche da noite' },
 };
 
 const MealNameText = ({ mealId }: MealNameTextProps) => {
