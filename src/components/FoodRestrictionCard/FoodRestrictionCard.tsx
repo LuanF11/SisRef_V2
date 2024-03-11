@@ -7,7 +7,7 @@ const FoodRestrictionCard = ({ children }: { children: React.ReactNode }) => {
   const foodRestrictionContext = React.useContext(FoodRestrictionContext);
 
   const handleRemover = (restriction: string) => {
-    fetch(`${process.env.API_URL}/api/remove-food-restriction?restriction=${restriction}`)
+    fetch(`${process.env.LOCAL_API_URL}/api/remove-food-restriction?restriction=${restriction}`)
       .then(res => res.json())
       .then(data => {
         foodRestrictionContext.setFoodRestrictions(data);

@@ -75,7 +75,7 @@ const HistoryContainer = () => {
 
         setMenu(menuWithCanceledMeals);
 
-    }, [historyData, menu, setMenu]);
+    }, [historyData, setMenu]);
 
     return (
         <div className={styles.wrapper}>
