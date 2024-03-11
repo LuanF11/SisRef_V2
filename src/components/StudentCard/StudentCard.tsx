@@ -3,6 +3,7 @@ import styles from "./StudentCard.module.css";
 import Image from "next/image";
 import HeaderBar from "../HeaderBar/HeaderBar";
 import { StudentContext } from "@/lib/contexts/StudentContex";
+import { Skeleton } from "@mui/material";
 
 const toCapitalFirstLetter = (name: string | undefined) => {
     if (!name) return name;
@@ -40,11 +41,11 @@ const StudentCard = () => {
                     <div className={styles.nameAndMatricula}>
                         <div className={styles.field}>
                             <div className={styles.title}>Nome:</div>
-                            <div className={styles.studentName}>{toCapitalFirstLetter(student?.name) || "Carregando..."}</div>
+                            <div className={styles.studentName}>{toCapitalFirstLetter(student?.name) || <Skeleton width={200} />}</div>
                         </div>
                         <div className={styles.field}>
                             <div className={styles.title}>Matrícula:</div>
-                            <div className={styles.studentRegistration}>{student?.mat || "Carregando..."}</div>
+                            <div className={styles.studentRegistration}>{student?.mat || <Skeleton  width={150}/>}</div>
                         </div>
                     </div>
                     <div className={styles.studentPhoto}>
@@ -53,26 +54,26 @@ const StudentCard = () => {
                 </div>
                 <div className={styles.field}>
                     <div className={styles.title}>Curso:</div>
-                    <div className={styles.studentCourse}>{student?.course?.description || "Carregando..."}</div>
+                    <div className={styles.studentCourse}>{student?.course?.description || <Skeleton width={250}/>}</div>
                 </div>
                 <div className={styles.campusAndShift}>
                     <div className={styles.field}>
                         <div className={styles.title}>Campus:</div>
-                        <div className={styles.studentCampus}>{toCapitalFirstLetter(student?.campus?.description) || "Carregando..."}</div>
+                        <div className={styles.studentCampus}>{toCapitalFirstLetter(student?.campus?.description) || <Skeleton />}</div>
                     </div>
                     <div className={styles.field}>
                         <div className={styles.title}>Turno:</div>
-                        <div className={styles.studentTurn}>{getShiftAsString(student?.shift_id) || "Carregando..."}</div>
+                        <div className={styles.studentTurn}>{getShiftAsString(student?.shift_id) || <Skeleton />}</div>
                     </div>
                 </div>
                 <div className={styles.codeAndMaturity}>
                     <div className={styles.field}>
                         <div className={styles.title}>Código:</div>
-                        <div className={styles.studentCod}>{student?.id || "Carregando..."}</div>
+                        <div className={styles.studentCod}>{student?.id || <Skeleton />}</div>
                     </div>
                     <div className={styles.field}>
                         <div className={styles.title}>Vencimento:</div>
-                        <div className={styles.studentMaturity}>{student?.dateValid || "Carregando..."}</div>
+                        <div className={styles.studentMaturity}>{student?.dateValid || <Skeleton />}</div>
                     </div>
                 </div>
             </div>

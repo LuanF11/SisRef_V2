@@ -16,19 +16,19 @@ import HistoryContainer from "@/components/HistoryContainer/HistoryContainer";
 export default function StudentPage() {
   return (
     <>
-    <div className={styles.studentCardAndAttentionWrapper}>
-      <StudentProvider>
-      <StudentCard />
-      </StudentProvider>
-      <CardAttention>
-        Devido à queda da internet no campus, todas as reservas de alimentação, exceto a do lanche da noite, serão feitas de maneira presencial na recepção.
-      </CardAttention>
-    </div>
-      
+      <div className={styles.studentCardAndAttentionWrapper}>
+        <StudentProvider>
+          <StudentCard />
+        </StudentProvider>
+        <CardAttention>
+          Devido à queda da internet no campus, todas as reservas de alimentação, exceto a do lanche da noite, serão feitas de maneira presencial na recepção.
+        </CardAttention>
+      </div>
+
       <MenuProvider>
         <MenuContainer />
       </MenuProvider>
-      
+
       <FoodRestrictionProvider>
         <FoodRestrictionContainer />
       </FoodRestrictionProvider>

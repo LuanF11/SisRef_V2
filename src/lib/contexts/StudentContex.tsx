@@ -1,43 +1,50 @@
-import { createContext, useState, useEffect, FC, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StudentType } from "../types/StudentType";
 import { TokenContext } from "./TokenContext";
 
-export const StudentContext = createContext<StudentType | null>(null);
+export const StudentContext = React.createContext<StudentType | null>(null);
 
-export const StudentProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
-  const tokenContext = useContext(TokenContext);
+export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { token } = useContext(TokenContext);
   const [student, setStudent] = useState<StudentType | null>(null);
-
-  const allCampi: StudentType["campus"][] = []
+  const [allCampi, setAllCampi] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch(`https://ruapi.cedro.ifce.edu.br/api/all/show-student/${tokenContext?.token?.id}`)
-      .then((response) => response.json())
+    if (!token?.id) return;
+
+    fetch(`https://ruapi.cedro.ifce.edu.br/api/all/show-student/${token.id}`)
+      .then((response) => {
+        if (!response.ok) throw new Error(response.statusText);
+        return response.json();
+      })
       .then((data: StudentType) => {
-        data.campus = allCampi.find((campus) => campus?.id == data.campus_id) || null;
-
-        return setStudent(data)
-      });
-  }, []);
+        data.campus = allCampi.find((campus) => campus?.id === data.campus_id) || null;
+        setStudent(data);
+      })
+      .catch((error) => console.error('Error:', error));
+  }, [allCampi, token]);
 
   useEffect(() => {
+    if (!token?.access_token) return;
+
     fetch("https://ruapi.cedro.ifce.edu.br/api/all/campus", {
-      "headers": {
-        "accept": "application/json, text/plain, */*",
-        "authorization": `Bearer ${tokenContext?.token?.access_token}`,
+      headers: {
+        accept: "application/json, text/plain, */*",
+        authorization: `Bearer ${token.access_token}`,
       },
-      "body": null,
-      "method": "GET"
+      method: "GET"
     })
-      .then((response) => response.json())
-      .then((data) => {
-        allCampi.push(data);
-      });
-  }, [student]);
+      .then((response) => {
+        if (!response.ok) throw new Error(response.statusText);
+        return response.json();
+      })
+      .then((data) => setAllCampi([data]))
+      .catch((error) => console.error('Error:', error));
+  }, [token]);
 
   return (
-    <StudentContext.Provider value={student} >
-      {student && children}
+    <StudentContext.Provider value={student}>
+      {children}
     </StudentContext.Provider>
   );
 };
