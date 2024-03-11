@@ -6,7 +6,7 @@ import StudentCard from "@/components/StudentCard/StudentCard";
 import { MenuProvider } from "@/lib/contexts/MenuContext";
 import React from "react";
 import { FoodRestrictionProvider } from "@/lib/contexts/FoodRestrictionContext";
-import { MenuContainer } from "@/components/MenuContainer/MenuContainer";
+import MenuContainer from "@/components/MenuContainer/MenuContainer";
 import { FoodRestrictionContainer } from "@/components/FoodRestrictionContainer/FoodRestrictionContainer";
 
 import styles from "./page.module.css";

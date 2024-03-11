@@ -2,7 +2,6 @@
   display: grid;
   row-gap: 1rem;
 
-  grid-area: menu;
 }
 
 .container {
@@ -18,7 +17,9 @@
     column-gap: 2rem;
 
     grid-template-areas: "header header"
-                       "container container"
+      "container container";
+
+    grid-area: menu;
   }
 
   .wrapper header {

@@ -1,35 +1,33 @@
+import React, { useContext, useEffect } from "react";
 import { MenuContext } from "@/lib/contexts/MenuContext";
-import React from "react";
 import HeaderBar from "../HeaderBar/HeaderBar";
 import MealCard from "../MealCard/MealCard";
-
+import MealCardSkeleton from "../MealCard/MealCardSkeleton";
 import styles from "./MenuContainer.module.css";
 
-export const MenuContainer = () => {
-  const menuContext = React.useContext(MenuContext);
+const MenuContainer = () => {
+  const { menu, setMenu } = useContext(MenuContext);
 
-  React.useEffect(() => {
-    const response = fetch(`${process.env.API_URL}/api/meal-by-day`)
+  useEffect(() => {
+    fetch(`${process.env.API_URL}/api/meal-by-day`)
       .then(res => res.json())
-      .then(data => menuContext.setMenu(data))
-  }, [])
+      .then(setMenu);
+  }, [setMenu]);
+
+  const meals = menu 
+    ? menu.map((meal, index) => (
+        <div className={styles.mealWrapper} key={index}>
+          <MealCard key={meal.id} menu={meal} showDateAndTime />
+        </div>
+      ))
+    : Array(4).fill(<MealCardSkeleton />);
 
   return (
     <div className={styles.wrapper}>
       <HeaderBar>Refeições do dia</HeaderBar>
-      <div className={styles.container}>
-        {
-          menuContext.menu ? menuContext.menu.map((menu, index) => (
-            <div className={styles.mealWrapper} key={index}>
-              <MealCard key={menu.id} menu={menu} showDateAndTime />
-            </div>
-          )) : (
-            <div>
-              Nenhuma refeição cadastrada para o dia
-            </div>
-          )
-        }
-      </div>
+      {meals}
     </div>
   );
-}
+};
+
+export default MenuContainer;

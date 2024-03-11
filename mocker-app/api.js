@@ -93,61 +93,71 @@ const  foodRestrictions = [
 
 const proxy = {
     '/api/meal-by-day': (req, res) => {
-        return res.json(todasAsRefeicoes);
+        setTimeout(() => {
+            return res.json(todasAsRefeicoes);
+        }, 1000);
     },
     '/api/reserve-meal': (req, res) => {
-        const { id } = req.query;
+        setTimeout(() => {
+            const { id } = req.query;
 
-        if (!id) return res.status(400).json({ error: 'Id is required' });
+            if (!id) return res.status(400).json({ error: 'Id is required' });
 
-        const meal = todasAsRefeicoes.find(item => item.id == id);
+            const meal = todasAsRefeicoes.find(item => item.id == id);
 
-        if (!meal) return res.status(404).json({ error: 'Meal not found' });
+            if (!meal) return res.status(404).json({ error: 'Meal not found' });
 
-        meal.agendado = true;
+            meal.agendado = true;
 
-        res.json(todasAsRefeicoes);
+            res.json(todasAsRefeicoes);
+        }, 1000);
     },
     '/api/cancel-meal': (req, res) => {
-        const { id } = req.query;
+        setTimeout(() => {
+            const { id } = req.query;
 
-        if (!id) return res.status(400).json({ error: 'Id is required' });
+            if (!id) return res.status(400).json({ error: 'Id is required' });
 
-        const meal = todasAsRefeicoes.find(item => item.id == id);
+            const meal = todasAsRefeicoes.find(item => item.id == id);
 
-        if (!meal) return res.status(404).json({ error: 'Meal not found' });
+            if (!meal) return res.status(404).json({ error: 'Meal not found' });
 
-        meal.canceled_by_student = true;
+            meal.canceled_by_student = true;
 
-        res.json(todasAsRefeicoes);
+            res.json(todasAsRefeicoes);
+        }, 1000);
     },
     '/api/food-restrictions': (req, res) => {
-        return res.json(foodRestrictions);
+        setTimeout(() => {
+            return res.json(foodRestrictions);
+        }, 1000);
     },
     '/api/add-food-restriction': (req, res) => {
-        const { restriction } = req.query;
+        setTimeout(() => {
+            const { restriction } = req.query;
 
-        if (!restriction) return res.status(400).json({ error: 'Restriction is required' });
+            if (!restriction) return res.status(400).json({ error: 'Restriction is required' });
 
-        foodRestrictions.push(restriction);
+            foodRestrictions.push(restriction);
 
-        res.json(foodRestrictions);
+            res.json(foodRestrictions);
+        }, 1000);
     },
     '/api/remove-food-restriction': (req, res) => {
-        const { restriction } = req.query;
+        setTimeout(() => {
+            const { restriction } = req.query;
 
-        if (!restriction) return res.status(400).json({ error: 'Restriction is required' });
+            if (!restriction) return res.status(400).json({ error: 'Restriction is required' });
 
-        const index = foodRestrictions.indexOf(restriction);
+            const index = foodRestrictions.indexOf(restriction);
 
-        if (index === -1) return res.status(404).json({ error: 'Food restriction not found' });
+            if (index === -1) return res.status(404).json({ error: 'Food restriction not found' });
 
-        foodRestrictions.splice(index, 1);
+            foodRestrictions.splice(index, 1);
 
-        res.json(foodRestrictions);
+            res.json(foodRestrictions);
+        }, 1000);
     }
 }
-
-
 
 module.exports = proxy;
