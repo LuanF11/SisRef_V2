@@ -16,6 +16,7 @@ import HistoryContainer from "@/components/HistoryContainer/HistoryContainer";
 export default function StudentPage() {
   return (
     <>
+    <title>Menu</title>
       <div className={styles.studentCardAndAttentionWrapper}>
         <StudentProvider>
           <StudentCard />
