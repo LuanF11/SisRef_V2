@@ -203,7 +203,7 @@ const MealCard = ({ menu, showDateAndTime, isFromHistory, reload}: GenericCardPr
       }
       {
         situationText === "ReservadoText" && (
-          <Button variant="vermelho-outline" onClick={() => handleCancelar(menu.id, menu.date)}>Cancelar</Button>
+          <Button variant="vermelho-outline" onClick={() => handleCancelar(menu.meal.id, menu.date)}>Cancelar</Button>
         )
       }
       {
